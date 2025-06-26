@@ -4,10 +4,102 @@
  */
 package Entidades;
 
+import java.util.Calendar;
+
 /**
  *
  * @author Leonardo
  */
 public class Fecha {
     
-}
+    private int dia;
+    private int mes;
+    private int anio;
+    private int hora;
+    private int minuto;
+    private int segundo;
+    
+    public Fecha() {
+        dia = 1;
+        mes = 1;
+        anio = 1900;
+        hora = 0;
+        minuto = 0;
+        segundo = 0;
+    }
+
+    public Fecha(int dia, int mes, int anio, int hora, int minuto, int segundo) {
+        this.dia = dia;
+        this.mes = mes;
+        this.anio = anio;
+        this.hora = hora;
+        this.minuto = minuto;
+        this.segundo = segundo;
+    }
+    
+    public static Fecha Hoy(){
+        Calendar calendario = Calendar.getInstance();
+        int d = calendario.get(Calendar.DAY_OF_MONTH) + 1;
+        int m = calendario.get(Calendar.MONTH);
+        int y = calendario.get(Calendar.YEAR);
+        int h = calendario.get(Calendar.HOUR_OF_DAY);
+        int min = calendario.get(Calendar.MINUTE);
+        int seg = calendario.get(Calendar.SECOND);
+        
+        return new Fecha(d,m,y,h,min,seg);
+    }
+
+    public int getDia() {
+        return dia;
+    }
+
+    public void setDia(int dia) {
+        this.dia = dia;
+    }
+
+    public int getMes() {
+        return mes;
+    }
+
+    public void setMes(int mes) {
+        this.mes = mes;
+    }
+
+    public int getAnio() {
+        return anio;
+    }
+
+    public void setAnio(int anio) {
+        this.anio = anio;
+    }
+
+    public int getHora() {
+        return hora;
+    }
+
+    public void setHora(int hora) {
+        this.hora = hora;
+    }
+
+    public int getMinuto() {
+        return minuto;
+    }
+
+    public void setMinuto(int minuto) {
+        this.minuto = minuto;
+    }
+
+    public int getSegundo() {
+        return segundo;
+    }
+
+    public void setSegundo(int segundo) {
+        this.segundo = segundo;
+    }
+    
+    @Override
+    public String toString() {
+        return dia + "/" + mes + "/" + anio + "" + hora + ":" + minuto + ":" + segundo;
+    }
+} 
+

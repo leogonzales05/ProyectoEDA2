@@ -7,6 +7,7 @@ package TDA;
 /**
  *
  * @author Leonardo
+ * @param <T>
  */
 public class Cola<T> {
     private Nodo<T> frente;

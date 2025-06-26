@@ -4,6 +4,8 @@
  */
 package Entidades;
 
+import TDA.*;
+
 /**
  *
  * @author Leonardo
@@ -11,4 +13,11 @@ package Entidades;
 public class Expediente {
     private int idExpediente;
     private int prioridad;
+    private Interesado interesado;
+    private String asunto;
+    private Documento documentoRef;
+    private Fecha fechaIni;
+    private Fecha fechaFin;
+    private ListaSimpleEnlazada<Seguimiento> listaSeguimiento;
+    private ListaSimpleEnlazada<Documento> documentosResultado; 
 }

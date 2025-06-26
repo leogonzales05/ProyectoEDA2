@@ -9,5 +9,7 @@ package Entidades;
  * @author Leonardo
  */
 public class Documento {
-    
+    private String nombre;
+    private String contenido;
+    private String tipo;
 }
