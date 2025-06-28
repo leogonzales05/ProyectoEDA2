@@ -42,6 +42,5 @@ public class Seguimiento {
     public void setFechaHoraMovimiento(Fecha fechaHoraMovimiento) {
         this.fechaHoraMovimiento = fechaHoraMovimiento;
     }
-    
-    
+       
 }

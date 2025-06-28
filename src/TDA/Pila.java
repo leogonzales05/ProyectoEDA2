@@ -12,6 +12,10 @@ package TDA;
 public class Pila<T> {
     private Nodo<T> cima;
 
+    public Pila(){
+        this.cima = null;
+    }
+    
     public Pila(Nodo<T> cima) {
         this.cima = cima;
     }
@@ -26,7 +30,7 @@ public class Pila<T> {
             cima = nuevoNodo;
         }
         else{
-            nuevoNodo.setSgteNodo(nuevoNodo);
+            nuevoNodo.setSgteNodo(cima);
             cima = nuevoNodo;
         }
     }
