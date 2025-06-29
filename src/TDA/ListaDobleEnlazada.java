@@ -27,6 +27,14 @@ public class ListaDobleEnlazada<T> {
     public boolean esVacia(){
         return cabeza == null;
     }
+
+    public NodoDoble<T> getCabeza() {
+        return cabeza;
+    }
+
+    public NodoDoble<T> getUltimo() {
+        return ultimo;
+    }
     
     public void agregarInicio(T item){
         NodoDoble<T> nuevoNodo = new NodoDoble(item);

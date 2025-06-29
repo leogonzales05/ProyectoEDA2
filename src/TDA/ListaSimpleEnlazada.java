@@ -20,6 +20,14 @@ public class ListaSimpleEnlazada<T> {
     public boolean esVacia() {
         return cabeza == null;
     }
+
+    public Nodo<T> getCabeza() {
+        return cabeza;
+    }
+
+    public Nodo<T> getUltimo() {
+        return ultimo;
+    }
     
     public void agregar(T item) {
         // crear un nuevo nodo

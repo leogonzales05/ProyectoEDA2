@@ -37,7 +37,7 @@ public class Fecha {
         this.segundo = segundo;
     }
     
-    public static Fecha Hoy(){
+    public static Fecha Exacta(){
         Calendar calendario = Calendar.getInstance();
         int d = calendario.get(Calendar.DAY_OF_MONTH) + 1;
         int m = calendario.get(Calendar.MONTH);
@@ -99,7 +99,7 @@ public class Fecha {
     
     @Override
     public String toString() {
-        return dia + "/" + mes + "/" + anio + "" + hora + ":" + minuto + ":" + segundo;
+        return dia + "/" + mes + "/" + anio + " " + hora + ":" + minuto + ":" + segundo;
     }
 } 
 
