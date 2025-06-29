@@ -15,11 +15,22 @@ public class Expediente {
     private int prioridad;
     private Interesado interesado;
     private String asunto;
-    private Documento documentoRef;
+    private String documentoRef;
     private Fecha fechaIni;
     private Fecha fechaFin;
     private ListaSimpleEnlazada<Seguimiento> listaSeguimiento;
     private ListaSimpleEnlazada<Documento> documentosResultado;
+
+    public Expediente(int idExpediente, int prioridad, Interesado interesado, String asunto, String documentoRef, ListaSimpleEnlazada<Seguimiento> listaSeguimiento, ListaSimpleEnlazada<Documento> documentosResultado) {
+        this.prioridad = prioridad;
+        this.interesado = interesado;
+        this.asunto = asunto;
+        this.documentoRef = documentoRef;
+        this.fechaIni = Fecha.Exacta();
+        this.fechaFin = null;
+        this.listaSeguimiento = listaSeguimiento;
+        this.documentosResultado = documentosResultado;
+    }
 
     public int getIdExpediente() {
         return idExpediente;
@@ -28,7 +39,7 @@ public class Expediente {
     public void setIdExpediente(int idExpediente) {
         this.idExpediente = idExpediente;
     }
-
+    
     public int getPrioridad() {
         return prioridad;
     }
@@ -53,11 +64,11 @@ public class Expediente {
         this.asunto = asunto;
     }
 
-    public Documento getDocumentoRef() {
+    public String getDocumentoRef() {
         return documentoRef;
     }
 
-    public void setDocumentoRef(Documento documentoRef) {
+    public void setDocumentoRef(String documentoRef) {
         this.documentoRef = documentoRef;
     }
 
