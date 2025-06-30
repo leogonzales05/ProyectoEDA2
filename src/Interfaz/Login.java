@@ -38,7 +38,7 @@ public class Login extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         username = new javax.swing.JTextField();
         contraseña = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
+        BT_inicioSesion = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMaximumSize(new java.awt.Dimension(700, 500));
@@ -65,10 +65,10 @@ public class Login extends javax.swing.JFrame {
             }
         });
 
-        jButton1.setText("Iniciar sesión");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        BT_inicioSesion.setText("Iniciar sesión");
+        BT_inicioSesion.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                BT_inicioSesionActionPerformed(evt);
             }
         });
 
@@ -87,7 +87,7 @@ public class Login extends javax.swing.JFrame {
                             .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(289, 289, 289)
-                        .addComponent(jButton1)))
+                        .addComponent(BT_inicioSesion)))
                 .addContainerGap(310, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -102,7 +102,7 @@ public class Login extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addComponent(contraseña, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(32, 32, 32)
-                .addComponent(jButton1)
+                .addComponent(BT_inicioSesion)
                 .addContainerGap(172, Short.MAX_VALUE))
         );
 
@@ -130,7 +130,7 @@ public class Login extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_contraseñaActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void BT_inicioSesionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BT_inicioSesionActionPerformed
         // TODO add your handling code here:
         Nodo<Usuario> aux = ListaAdministrador.usuarios().getCabeza();
         boolean encontrado = false;
@@ -143,11 +143,13 @@ public class Login extends javax.swing.JFrame {
                 encontrado = true;
             }
             aux = aux.getSgteNodo();
+         Menu menu=new Menu();
+         ScreenManager.openNewScreen(this, menu);
         }
         if (!encontrado) {
             JOptionPane.showMessageDialog(this,"Usuario o Contraseña incorrectos");
         }
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_BT_inicioSesionActionPerformed
 
     /**
      * @param args the command line arguments
@@ -189,8 +191,8 @@ public class Login extends javax.swing.JFrame {
     
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton BT_inicioSesion;
     private javax.swing.JTextField contraseña;
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;

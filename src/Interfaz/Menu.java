@@ -27,55 +27,88 @@ public class Menu extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        regExp = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
+        BT_RegistrarExpediente = new javax.swing.JButton();
+        BT_registrarMov = new javax.swing.JButton();
+        BT_registrarFinal = new javax.swing.JButton();
+        BT_buscarExpediente = new javax.swing.JButton();
+        BT_registrarDP = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setPreferredSize(new java.awt.Dimension(700, 500));
         setSize(new java.awt.Dimension(700, 500));
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
-        regExp.setText("Registrar Expediente");
-        regExp.addActionListener(new java.awt.event.ActionListener() {
+        BT_RegistrarExpediente.setText("Registrar Expediente");
+        BT_RegistrarExpediente.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                regExpActionPerformed(evt);
+                BT_RegistrarExpedienteActionPerformed(evt);
             }
         });
 
-        jButton2.setText("Registrar Movimiento");
+        BT_registrarMov.setText("Registrar Movimiento");
+        BT_registrarMov.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BT_registrarMovActionPerformed(evt);
+            }
+        });
 
-        jButton3.setText("Registrar Finalización de Trámite");
-        jButton3.setToolTipText("");
+        BT_registrarFinal.setText("Registrar Finalización de Trámite");
+        BT_registrarFinal.setToolTipText("");
+        BT_registrarFinal.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BT_registrarFinalActionPerformed(evt);
+            }
+        });
 
-        jButton4.setText("Buscar Expediente");
+        BT_buscarExpediente.setText("Buscar Expediente");
+        BT_buscarExpediente.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BT_buscarExpedienteActionPerformed(evt);
+            }
+        });
+
+        BT_registrarDP.setText("Registrar dependencia");
+        BT_registrarDP.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BT_registrarDPActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(53, 53, 53)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButton4)
-                    .addComponent(jButton3)
-                    .addComponent(jButton2)
-                    .addComponent(regExp))
-                .addContainerGap(570, Short.MAX_VALUE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(250, 250, 250)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(BT_registrarMov)
+                            .addComponent(BT_RegistrarExpediente)
+                            .addComponent(BT_registrarDP)))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(264, 264, 264)
+                        .addComponent(BT_buscarExpediente))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(223, 223, 223)
+                        .addComponent(BT_registrarFinal)))
+                .addContainerGap(400, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(73, 73, 73)
-                .addComponent(regExp)
-                .addGap(53, 53, 53)
-                .addComponent(jButton2)
-                .addGap(52, 52, 52)
-                .addComponent(jButton3)
-                .addGap(55, 55, 55)
-                .addComponent(jButton4)
-                .addContainerGap(167, Short.MAX_VALUE))
+                .addGap(102, 102, 102)
+                .addComponent(BT_registrarDP)
+                .addGap(29, 29, 29)
+                .addComponent(BT_RegistrarExpediente)
+                .addGap(32, 32, 32)
+                .addComponent(BT_registrarMov)
+                .addGap(33, 33, 33)
+                .addComponent(BT_registrarFinal)
+                .addGap(27, 27, 27)
+                .addComponent(BT_buscarExpediente)
+                .addContainerGap(154, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -96,9 +129,36 @@ public class Menu extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void regExpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_regExpActionPerformed
+    private void BT_RegistrarExpedienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BT_RegistrarExpedienteActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_regExpActionPerformed
+        RegistrarExp registrarExp=new RegistrarExp();
+        ScreenManager.openNewScreen(this, registrarExp);
+    }//GEN-LAST:event_BT_RegistrarExpedienteActionPerformed
+
+    private void BT_registrarMovActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BT_registrarMovActionPerformed
+        // TODO add your handling code here:
+        RegistrarMov registrarMov=new RegistrarMov();
+        ScreenManager.openNewScreen(this, registrarMov);
+    }//GEN-LAST:event_BT_registrarMovActionPerformed
+
+    private void BT_registrarDPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BT_registrarDPActionPerformed
+        // TODO add your handling code here:
+        RegistrarDependencia registrarDependencia=new RegistrarDependencia();
+        ScreenManager.openNewScreen(this, registrarDependencia);
+        
+    }//GEN-LAST:event_BT_registrarDPActionPerformed
+
+    private void BT_registrarFinalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BT_registrarFinalActionPerformed
+        // TODO add your handling code here:
+        RegistrarFinalizacion registrarFinalizacion= new RegistrarFinalizacion();
+        ScreenManager.openNewScreen(this, registrarFinalizacion);
+    }//GEN-LAST:event_BT_registrarFinalActionPerformed
+
+    private void BT_buscarExpedienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BT_buscarExpedienteActionPerformed
+        // TODO add your handling code here:
+        BuscarExpediente buscarExpediente= new BuscarExpediente();
+        ScreenManager.openNewScreen(this, buscarExpediente);
+    }//GEN-LAST:event_BT_buscarExpedienteActionPerformed
 
     /**
      * @param args the command line arguments
@@ -136,10 +196,11 @@ public class Menu extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
+    private javax.swing.JButton BT_RegistrarExpediente;
+    private javax.swing.JButton BT_buscarExpediente;
+    private javax.swing.JButton BT_registrarDP;
+    private javax.swing.JButton BT_registrarFinal;
+    private javax.swing.JButton BT_registrarMov;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JButton regExp;
     // End of variables declaration//GEN-END:variables
 }

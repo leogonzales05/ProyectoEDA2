@@ -15,6 +15,7 @@ public class Programa {
     public static Cola<Expediente> colaAtencion;
     public static Pila<Documento> pilaHistorialAcciones;
     static Random rand = new Random();
+    public static ListaDobleEnlazada<Dependencia> listaDependencias;
     
 
     public ListaDobleEnlazada<Expediente> getExpedientes() {
@@ -33,7 +34,7 @@ public class Programa {
     
     public static void registrarExpediente(int prioridad, 
             Interesado interesado, String asunto, 
-            String documentoRef, Fecha fechaIni){
+            String documentoRef){
         int id = rand.nextInt(99999999 - 10000000 + 1) + 10000000;    
         NodoDoble<Expediente> aux = expedientes.getCabeza();
         while(!expedientes.esVacia()){
@@ -54,5 +55,13 @@ public class Programa {
         Expediente exp = new Expediente (id,prioridad,interesado,asunto,documentoRef);
         expedientes.agregarFinal(exp);
     }
+    
+    public static void registrarDependencia(String nombre){
+        
+    Dependencia dependencia= new Dependencia(nombre);
+    listaDependencias.agregarFinal(dependencia);
+    
+    }
+    
     
 }
