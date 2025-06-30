@@ -110,13 +110,53 @@ public class ListaDobleEnlazada<T> {
         System.out.println("null");
     }
     
+    public int longitud(){
+        int count = 0;
+        if (!esVacia()) {
+            NodoDoble<T> aux = cabeza;
+            while(aux != null){
+                count++;
+                aux = aux.getSgteNodo();
+            }
+        }
+        return count;
+    }
+    
+    public int ubicacion(T item){
+        int pos = 1;
+        NodoDoble<T> aux = cabeza;
+        while(aux!=null){
+            if (aux.getItem().equals(item)) {
+                return pos;
+            }
+            aux= aux.getSgteNodo();
+            pos++;
+        }
+        return -1; 
+    }
+    
+    public T iesimo(int pos){
+        if (pos >= 1 && pos<= longitud()) {
+            int i = 1;
+            NodoDoble<T> aux = cabeza;
+            while(i < pos){
+                i++;
+                aux = aux.getSgteNodo();
+            }
+            return aux.getItem();
+        }
+        else{
+            return null;
+        }
+    }
+    
     public void eliminar(T item){
         if (esVacia()) {
             System.out.println("La lista esta vacia.");
         }
         else{
             NodoDoble<T> aux = cabeza;
-            while(aux != null && aux.getItem() != item){
+            while(aux != null && !aux.getItem().equals(item)){
                 aux = aux.getSgteNodo();
             }
             if (aux != null) {

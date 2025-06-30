@@ -10,14 +10,16 @@ package Entidades;
  */
 public class Interesado {
     private int dni;
-    private String nombre;
+    private String nombres;
+    private String apellidos;
     private int telefono;
     private String email;
     private String tipo;
 
-    public Interesado(int dni, String nombre, int telefono, String email, String tipo) {
+    public Interesado(int dni, String nombre,String apellidos, int telefono, String email, String tipo) {
         this.dni = dni;
-        this.nombre = nombre;
+        this.nombres = nombre;
+        this.apellidos = apellidos;
         this.telefono = telefono;
         this.email = email;
         this.tipo = tipo;
@@ -31,12 +33,20 @@ public class Interesado {
         this.dni = dni;
     }
 
-    public String getNombre() {
-        return nombre;
+    public String getNombres() {
+        return nombres;
     }
 
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
+    public void setNombres(String nombres) {
+        this.nombres = nombres;
+    }
+
+    public String getApellidos() {
+        return apellidos;
+    }
+
+    public void setApellidos(String apellidos) {
+        this.apellidos = apellidos;
     }
 
     public int getTelefono() {
@@ -67,7 +77,8 @@ public class Interesado {
     public String toString() {
         return "Interesado{" +
                 "dni=" + dni +
-                ", nombre='" + nombre + '\'' +
+                ", nombres='" + nombres + '\'' +
+                ", apellidos='" + apellidos + '\'' +
                 ", telefono=" + telefono +
                 ", email='" + email + '\'' +
                 ", tipo='" + tipo + '\'' +

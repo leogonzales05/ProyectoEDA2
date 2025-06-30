@@ -21,15 +21,15 @@ public class Expediente {
     private ListaSimpleEnlazada<Seguimiento> listaSeguimiento;
     private ListaSimpleEnlazada<Documento> documentosResultado;
 
-    public Expediente(int idExpediente, int prioridad, Interesado interesado, String asunto, String documentoRef, ListaSimpleEnlazada<Seguimiento> listaSeguimiento, ListaSimpleEnlazada<Documento> documentosResultado) {
+    public Expediente(int idExpediente, int prioridad, Interesado interesado, String asunto, String documentoRef) {
         this.prioridad = prioridad;
         this.interesado = interesado;
         this.asunto = asunto;
         this.documentoRef = documentoRef;
         this.fechaIni = Fecha.Exacta();
         this.fechaFin = null;
-        this.listaSeguimiento = listaSeguimiento;
-        this.documentosResultado = documentosResultado;
+        this.listaSeguimiento = new ListaSimpleEnlazada<>();
+        this.documentosResultado = new ListaSimpleEnlazada<>();
     }
 
     public int getIdExpediente() {

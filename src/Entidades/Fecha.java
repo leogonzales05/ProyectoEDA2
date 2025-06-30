@@ -39,8 +39,8 @@ public class Fecha {
     
     public static Fecha Exacta(){
         Calendar calendario = Calendar.getInstance();
-        int d = calendario.get(Calendar.DAY_OF_MONTH) + 1;
-        int m = calendario.get(Calendar.MONTH);
+        int d = calendario.get(Calendar.DAY_OF_MONTH);
+        int m = calendario.get(Calendar.MONTH) + 1;
         int y = calendario.get(Calendar.YEAR);
         int h = calendario.get(Calendar.HOUR_OF_DAY);
         int min = calendario.get(Calendar.MINUTE);

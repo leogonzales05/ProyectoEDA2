@@ -11,60 +11,47 @@ import java.util.Random;
  * @author Leonardo
  */
 public class Programa {
-    private ListaDobleEnlazada<Expediente> expedientes;
-    private Cola<Expediente> colaAtencion;
-    private Pila<Documento> pilaHistorialAcciones;
+    public static ListaDobleEnlazada<Expediente> expedientes;
+    public static Cola<Expediente> colaAtencion;
+    public static Pila<Documento> pilaHistorialAcciones;
     static Random rand = new Random();
     
-    public Programa() {
-        this.expedientes = new ListaDobleEnlazada<>();
-        this.colaAtencion = new Cola<>();
-        this.pilaHistorialAcciones = new Pila<>();
-    }
 
     public ListaDobleEnlazada<Expediente> getExpedientes() {
         return expedientes;
     }
 
-    public void setExpedientes(ListaDobleEnlazada<Expediente> expedientes) {
-        this.expedientes = expedientes;
-    }
 
     public Cola<Expediente> getColaAtencion() {
         return colaAtencion;
     }
 
-    public void setColaAtencion(Cola<Expediente> colaAtencion) {
-        this.colaAtencion = colaAtencion;
-    }
 
     public Pila<Documento> getPilaHistorialAcciones() {
         return pilaHistorialAcciones;
     }
-
-    public void setPilaHistorialAcciones(Pila<Documento> pilaHistorialAcciones) {
-        this.pilaHistorialAcciones = pilaHistorialAcciones;
-    }
     
-    public void registrarExpediente(int prioridad, 
+    public static void registrarExpediente(int prioridad, 
             Interesado interesado, String asunto, 
-            String documentoRef, Fecha fechaIni, 
-            ListaSimpleEnlazada<Seguimiento> seguimiento, 
-            ListaSimpleEnlazada<Documento> documentosResultado){
+            String documentoRef, Fecha fechaIni){
         int id = rand.nextInt(99999999 - 10000000 + 1) + 10000000;    
+        NodoDoble<Expediente> aux = expedientes.getCabeza();
         while(!expedientes.esVacia()){
-            NodoDoble<Expediente> aux = expedientes.getCabeza();
             if (aux.getItem().getIdExpediente() == id) {
                 id = rand.nextInt(99999999 - 10000000 + 1) + 10000000;    
             }
             if (aux.getItem().getInteresado().getDni() == interesado.getDni()) {
-                interesado.setEmail(aux.getItem().getInteresado().getEmail());
-                interesado.setNombre(aux.getItem().getInteresado().getNombre());
-                interesado.setTelefono(aux.getItem().getInteresado().getTelefono());
-                interesado.setTipo(aux.getItem().getInteresado().getTipo());
+                Interesado yaRegistrado = aux.getItem().getInteresado();
+                interesado.setEmail(yaRegistrado.getEmail());
+                interesado.setNombres(yaRegistrado.getNombres());
+                interesado.setApellidos(yaRegistrado.getApellidos());
+                interesado.setTelefono(yaRegistrado.getTelefono());
+                interesado.setTipo(yaRegistrado.getTipo());
             }
+            aux = aux.getSgteNodo();
         }
-        Expediente exp = new Expediente (id,prioridad,interesado,asunto,documentoRef, seguimiento, documentosResultado);
+        
+        Expediente exp = new Expediente (id,prioridad,interesado,asunto,documentoRef);
         expedientes.agregarFinal(exp);
     }
     
