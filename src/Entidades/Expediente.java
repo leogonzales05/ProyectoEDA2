@@ -105,5 +105,10 @@ public class Expediente {
         this.documentosResultado = documentosResultado;
     }
     
-    
+    public void agregarSeguimiento(Seguimiento seguimiento) {
+    if (this.listaSeguimiento == null) {
+        this.listaSeguimiento = new ListaSimpleEnlazada<>();
+    }
+    this.listaSeguimiento.agregar(seguimiento); 
+}
 }

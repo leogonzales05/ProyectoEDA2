@@ -32,6 +32,8 @@ public class Menu extends javax.swing.JFrame {
         BT_registrarFinal = new javax.swing.JButton();
         BT_buscarExpediente = new javax.swing.JButton();
         BT_registrarDP = new javax.swing.JButton();
+        BT_visualizar = new javax.swing.JButton();
+        BT_moverExpediente = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setPreferredSize(new java.awt.Dimension(700, 500));
@@ -46,7 +48,7 @@ public class Menu extends javax.swing.JFrame {
             }
         });
 
-        BT_registrarMov.setText("Registrar Movimiento");
+        BT_registrarMov.setText("Registro de Movimientos");
         BT_registrarMov.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 BT_registrarMovActionPerformed(evt);
@@ -75,40 +77,68 @@ public class Menu extends javax.swing.JFrame {
             }
         });
 
+        BT_visualizar.setText("Visualizar Expedientes Registrados");
+        BT_visualizar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BT_visualizarActionPerformed(evt);
+            }
+        });
+
+        BT_moverExpediente.setText("Mover Expediente");
+        BT_moverExpediente.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BT_moverExpedienteActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addGap(0, 331, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(250, 250, 250)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(BT_registrarMov)
-                            .addComponent(BT_RegistrarExpediente)
-                            .addComponent(BT_registrarDP)))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(264, 264, 264)
-                        .addComponent(BT_buscarExpediente))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(223, 223, 223)
-                        .addComponent(BT_registrarFinal)))
-                .addContainerGap(400, Short.MAX_VALUE))
+                    .addComponent(BT_moverExpediente, javax.swing.GroupLayout.PREFERRED_SIZE, 228, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                            .addComponent(BT_visualizar)
+                            .addGap(308, 308, 308))
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addComponent(BT_registrarDP)
+                                .addComponent(BT_RegistrarExpediente))
+                            .addGap(347, 347, 347)))))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addComponent(BT_buscarExpediente)
+                        .addGap(346, 346, 346))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addComponent(BT_registrarFinal)
+                        .addGap(297, 297, 297))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addComponent(BT_registrarMov)
+                        .addGap(327, 327, 327))))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(102, 102, 102)
+                .addGap(90, 90, 90)
                 .addComponent(BT_registrarDP)
-                .addGap(29, 29, 29)
+                .addGap(39, 39, 39)
                 .addComponent(BT_RegistrarExpediente)
                 .addGap(32, 32, 32)
+                .addComponent(BT_visualizar)
+                .addGap(18, 18, 18)
+                .addComponent(BT_moverExpediente)
+                .addGap(34, 34, 34)
                 .addComponent(BT_registrarMov)
-                .addGap(33, 33, 33)
+                .addGap(18, 18, 18)
                 .addComponent(BT_registrarFinal)
-                .addGap(27, 27, 27)
+                .addGap(18, 18, 18)
                 .addComponent(BT_buscarExpediente)
-                .addContainerGap(154, Short.MAX_VALUE))
+                .addContainerGap(82, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -116,14 +146,16 @@ public class Menu extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addContainerGap())
         );
 
         pack();
@@ -159,6 +191,18 @@ public class Menu extends javax.swing.JFrame {
         BuscarExpediente buscarExpediente= new BuscarExpediente();
         ScreenManager.openNewScreen(this, buscarExpediente);
     }//GEN-LAST:event_BT_buscarExpedienteActionPerformed
+
+    private void BT_visualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BT_visualizarActionPerformed
+        // TODO add your handling code here:
+        VisualizarExpedientes visualizarExpedientes=new VisualizarExpedientes();
+        ScreenManager.openNewScreen(this, visualizarExpedientes);
+    }//GEN-LAST:event_BT_visualizarActionPerformed
+
+    private void BT_moverExpedienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BT_moverExpedienteActionPerformed
+        // TODO add your handling code here:
+        MoverExpediente moverExpediente=new MoverExpediente();
+        ScreenManager.openNewScreen(this, moverExpediente);
+    }//GEN-LAST:event_BT_moverExpedienteActionPerformed
 
     /**
      * @param args the command line arguments
@@ -198,9 +242,11 @@ public class Menu extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BT_RegistrarExpediente;
     private javax.swing.JButton BT_buscarExpediente;
+    private javax.swing.JButton BT_moverExpediente;
     private javax.swing.JButton BT_registrarDP;
     private javax.swing.JButton BT_registrarFinal;
     private javax.swing.JButton BT_registrarMov;
+    private javax.swing.JButton BT_visualizar;
     private javax.swing.JPanel jPanel1;
     // End of variables declaration//GEN-END:variables
 }
