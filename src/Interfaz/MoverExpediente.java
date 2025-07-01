@@ -173,7 +173,7 @@ try{
         boolean cambioExitoso = Programa.cambiarExpediente(idExpediente, cambio);
         if (cambioExitoso) {
             JOptionPane.showMessageDialog(this, 
-                "Expediente movido exitosamente de " + origen + " a " + destino, 
+                "Expediente movido exitosamente ", 
                 "Éxito", JOptionPane.INFORMATION_MESSAGE);
             limpiarCampos();
         } else {

@@ -5,7 +5,6 @@
 package Interfaz;
 
 import ControlUsuarios.*;
-import Entidades.Programa;
 import TDA.*;
 import javax.swing.JOptionPane;
 
