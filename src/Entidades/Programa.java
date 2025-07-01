@@ -5,13 +5,13 @@
 package Entidades;
 import TDA.*;
 import java.util.Random;
-
+import TDA.ListaDobleEnlazada;
 /**
  *
  * @author Leonardo
  */
 public class Programa {
-    public static ListaDobleEnlazada<Expediente> expedientes;
+    public static ListaDobleEnlazada<Expediente> expedientes = new ListaDobleEnlazada<>();
     public static Cola<Expediente> colaAtencion;
     public static Pila<Documento> pilaHistorialAcciones;
     static Random rand = new Random();
@@ -32,12 +32,12 @@ public class Programa {
         return pilaHistorialAcciones;
     }
     
-    public static void registrarExpediente(int prioridad, 
+   public static int registrarExpediente(int prioridad, 
             Interesado interesado, String asunto, 
             String documentoRef){
         int id = rand.nextInt(99999999 - 10000000 + 1) + 10000000;    
         NodoDoble<Expediente> aux = expedientes.getCabeza();
-        while(!expedientes.esVacia()){
+        while( aux != null){
             if (aux.getItem().getIdExpediente() == id) {
                 id = rand.nextInt(99999999 - 10000000 + 1) + 10000000;    
             }
@@ -54,6 +54,8 @@ public class Programa {
         
         Expediente exp = new Expediente (id,prioridad,interesado,asunto,documentoRef);
         expedientes.agregarFinal(exp);
+        return id;
+        
     }
     
     public static void registrarDependencia(String nombre){
@@ -62,6 +64,19 @@ public class Programa {
     listaDependencias.agregarFinal(dependencia);
     
     }
+    
+    public static Expediente BuscarExp(int id){
+        NodoDoble<Expediente> aux = expedientes.getCabeza();
+        
+        while(aux != null){
+            if(aux.getItem().getIdExpediente() == id){
+                return aux.getItem();
+            }
+            aux = aux.getSgteNodo();
+        }
+        
+        return null;
+} 
     
     
 }

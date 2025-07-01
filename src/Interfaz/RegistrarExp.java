@@ -7,6 +7,7 @@ package Interfaz;
 import Entidades.Fecha;
 import Entidades.Interesado;
 import Entidades.Programa;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -232,7 +233,7 @@ public class RegistrarExp extends javax.swing.JFrame {
                             .addComponent(jLabel11)
                             .addComponent(textoTelefono, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(15, 15, 15)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel7)
                             .addComponent(textoTipo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -292,7 +293,10 @@ public class RegistrarExp extends javax.swing.JFrame {
        
         Interesado interesado= new Interesado(DNI,nombre,apellidos,telefono,  email, tipo);
         
-        Programa.registrarExpediente(prioridad, interesado, asunto, docReferencia);
+        
+        int id = Programa.registrarExpediente(prioridad, interesado, asunto, docReferencia);
+
+        JOptionPane.showMessageDialog(this, "Expediente registrado con ID: " + id);
     }//GEN-LAST:event_BT_registroExpedienteActionPerformed
 
     private void textoApellidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textoApellidoActionPerformed
