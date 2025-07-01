@@ -22,6 +22,7 @@ public class Expediente {
     private ListaSimpleEnlazada<Documento> documentosResultado;
 
     public Expediente(int idExpediente, int prioridad, Interesado interesado, String asunto, String documentoRef) {
+        this.idExpediente = idExpediente;
         this.prioridad = prioridad;
         this.interesado = interesado;
         this.asunto = asunto;
