@@ -138,14 +138,12 @@ public class Login extends javax.swing.JFrame {
             Usuario userData = aux.getItem();
             if (userData.username.equals(username.getText()) && userData.contraseña.equals(contraseña.getText())) {
                 System.out.println("El usuario existe");
-                new Menu().setVisible(true);
-                this.dispose();
                 encontrado = true;
             }
             aux = aux.getSgteNodo();
-         Menu menu=new Menu();
-         ScreenManager.openNewScreen(this, menu);
         }
+        Menu menu=new Menu();
+        ScreenManager.openNewScreen(this, menu);
         if (!encontrado) {
             JOptionPane.showMessageDialog(this,"Usuario o Contraseña incorrectos");
         }
