@@ -20,6 +20,7 @@ public class Expediente {
     private Fecha fechaFin;
     private ListaSimpleEnlazada<Seguimiento> listaSeguimiento;
     private ListaSimpleEnlazada<Documento> documentosResultado;
+    private String estado;
 
     public Expediente(int idExpediente, int prioridad, Interesado interesado, String asunto, String documentoRef) {
         this.idExpediente = idExpediente;
@@ -31,6 +32,7 @@ public class Expediente {
         this.fechaFin = null;
         this.listaSeguimiento = new ListaSimpleEnlazada<>();
         this.documentosResultado = new ListaSimpleEnlazada<>();
+        this.estado = "En proceso";
     }
 
     public int getIdExpediente() {
@@ -97,6 +99,14 @@ public class Expediente {
         this.listaSeguimiento = listaSeguimiento;
     }
 
+    public String getEstado() {
+        return estado;
+    }
+
+    public void setEstado(String estado) {
+        this.estado = estado;
+    }
+
     public ListaSimpleEnlazada<Documento> getDocumentosResultado() {
         return documentosResultado;
     }
@@ -110,5 +120,6 @@ public class Expediente {
         this.listaSeguimiento = new ListaSimpleEnlazada<>();
     }
     this.listaSeguimiento.agregar(seguimiento); 
+    
 }
 }

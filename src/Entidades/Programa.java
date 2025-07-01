@@ -6,6 +6,7 @@ package Entidades;
 import TDA.*;
 import java.util.Random;
 import TDA.ListaDobleEnlazada;
+import java.util.Set;
 /**
  *
  * @author Leonardo
@@ -114,5 +115,18 @@ public static boolean cambiarExpediente(int idExpediente, Seguimiento cambio) {
     return false;
 }
     
+public static boolean finalizarExpediente(int idExpediente, Fecha fechafin){
     
+    Expediente exp = BuscarExp(idExpediente);
+    
+    if( exp != null && exp.getFechaFin() == null){
+        exp.setFechaFin(fechafin);
+        exp.setEstado("Finalizado");
+        return true;
+    }
+    return false;
+}
+
+
+
 }

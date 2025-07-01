@@ -4,6 +4,10 @@
  */
 package Interfaz;
 
+import Entidades.Fecha;
+import Entidades.Programa;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Lenovo
@@ -28,16 +32,28 @@ public class RegistrarFinalizacion extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        textoIdExpediente = new javax.swing.JTextField();
+        txtID = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
         BT_finalizarRegistro = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
+        jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        txtID.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtIDActionPerformed(evt);
+            }
+        });
 
         jLabel1.setText("Id del expediente:");
 
         BT_finalizarRegistro.setText("Finalizar registro");
+        BT_finalizarRegistro.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BT_finalizarRegistroActionPerformed(evt);
+            }
+        });
 
         jButton1.setText("Volver a Menu");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -46,38 +62,44 @@ public class RegistrarFinalizacion extends javax.swing.JFrame {
             }
         });
 
+        jLabel2.setText("Finalizar Expediente:");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(135, 135, 135)
-                .addComponent(BT_finalizarRegistro)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(74, Short.MAX_VALUE)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(txtID, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(95, 95, 95))
+            .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(textoIdExpediente, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(95, 95, 95))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jButton1)
-                        .addGap(79, 79, 79))))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(135, 135, 135)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(BT_finalizarRegistro)
+                            .addComponent(jButton1)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(145, 145, 145)
+                        .addComponent(jLabel2)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(77, 77, 77)
+                .addContainerGap()
+                .addComponent(jLabel2)
+                .addGap(55, 55, 55)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(textoIdExpediente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel1))
                 .addGap(34, 34, 34)
                 .addComponent(BT_finalizarRegistro)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 72, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 63, Short.MAX_VALUE)
                 .addComponent(jButton1)
-                .addGap(49, 49, 49))
+                .addGap(58, 58, 58))
         );
 
         pack();
@@ -87,6 +109,25 @@ public class RegistrarFinalizacion extends javax.swing.JFrame {
         // TODO add your handling code here:
         ScreenManager.goBack(this);
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void BT_finalizarRegistroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BT_finalizarRegistroActionPerformed
+    int id = Integer.parseInt(txtID.getText());
+
+    Fecha fechaFin = Fecha.Exacta(); // Asigna la fecha actual
+    boolean finalizado = Programa.finalizarExpediente(id, fechaFin);
+
+    if (finalizado) {
+        JOptionPane.showMessageDialog(this, "Expediente finalizado correctamente.");
+    } else {
+        JOptionPane.showMessageDialog(this, "No se pudo finalizar");
+    }  
+        
+        
+    }//GEN-LAST:event_BT_finalizarRegistroActionPerformed
+
+    private void txtIDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtIDActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtIDActionPerformed
 
     /**
      * @param args the command line arguments
@@ -117,6 +158,7 @@ public class RegistrarFinalizacion extends javax.swing.JFrame {
     private javax.swing.JButton BT_finalizarRegistro;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JTextField textoIdExpediente;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JTextField txtID;
     // End of variables declaration//GEN-END:variables
 }
