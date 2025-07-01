@@ -21,7 +21,6 @@ public class Login extends javax.swing.JFrame {
     public Login() {
         initComponents();
         ListaAdministrador.Iniciar();
-        Programa ulima = new Programa();
     }
 
     /**
