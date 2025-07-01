@@ -33,7 +33,6 @@ public class Menu extends javax.swing.JFrame {
         BT_buscarExpediente = new javax.swing.JButton();
         BT_registrarDP = new javax.swing.JButton();
         BT_visualizar = new javax.swing.JButton();
-        BT_moverExpediente = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setSize(new java.awt.Dimension(700, 500));
@@ -47,7 +46,7 @@ public class Menu extends javax.swing.JFrame {
             }
         });
 
-        BT_registrarMov.setText("Registro de Movimientos");
+        BT_registrarMov.setText("Registrar Movimientos");
         BT_registrarMov.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 BT_registrarMovActionPerformed(evt);
@@ -83,13 +82,6 @@ public class Menu extends javax.swing.JFrame {
             }
         });
 
-        BT_moverExpediente.setText("Mover Expediente");
-        BT_moverExpediente.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BT_moverExpedienteActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -104,7 +96,6 @@ public class Menu extends javax.swing.JFrame {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(BT_moverExpediente, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(BT_visualizar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(BT_registrarMov, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(BT_registrarFinal, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -120,11 +111,9 @@ public class Menu extends javax.swing.JFrame {
                 .addComponent(BT_RegistrarExpediente)
                 .addGap(18, 18, 18)
                 .addComponent(BT_visualizar)
-                .addGap(18, 18, 18)
-                .addComponent(BT_moverExpediente)
-                .addGap(18, 18, 18)
+                .addGap(45, 45, 45)
                 .addComponent(BT_registrarMov)
-                .addGap(18, 18, 18)
+                .addGap(32, 32, 32)
                 .addComponent(BT_registrarFinal)
                 .addGap(18, 18, 18)
                 .addComponent(BT_buscarExpediente)
@@ -182,12 +171,6 @@ public class Menu extends javax.swing.JFrame {
         ScreenManager.openNewScreen(this, visualizarExpedientes);
     }//GEN-LAST:event_BT_visualizarActionPerformed
 
-    private void BT_moverExpedienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BT_moverExpedienteActionPerformed
-        // TODO add your handling code here:
-        MoverExpediente moverExpediente=new MoverExpediente();
-        ScreenManager.openNewScreen(this, moverExpediente);
-    }//GEN-LAST:event_BT_moverExpedienteActionPerformed
-
     /**
      * @param args the command line arguments
      */
@@ -226,7 +209,6 @@ public class Menu extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BT_RegistrarExpediente;
     private javax.swing.JButton BT_buscarExpediente;
-    private javax.swing.JButton BT_moverExpediente;
     private javax.swing.JButton BT_registrarDP;
     private javax.swing.JButton BT_registrarFinal;
     private javax.swing.JButton BT_registrarMov;

@@ -58,7 +58,6 @@
                       <Group type="102" alignment="1" attributes="0">
                           <EmptySpace max="32767" attributes="0"/>
                           <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                              <Component id="BT_moverExpediente" alignment="1" max="32767" attributes="0"/>
                               <Component id="BT_visualizar" alignment="1" max="32767" attributes="0"/>
                               <Component id="BT_registrarMov" max="32767" attributes="0"/>
                               <Component id="BT_registrarFinal" max="32767" attributes="0"/>
@@ -79,11 +78,9 @@
                   <Component id="BT_RegistrarExpediente" min="-2" max="-2" attributes="0"/>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Component id="BT_visualizar" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace type="separate" max="-2" attributes="0"/>
-                  <Component id="BT_moverExpediente" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="45" max="-2" attributes="0"/>
                   <Component id="BT_registrarMov" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="32" max="-2" attributes="0"/>
                   <Component id="BT_registrarFinal" min="-2" max="-2" attributes="0"/>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Component id="BT_buscarExpediente" min="-2" max="-2" attributes="0"/>
@@ -103,7 +100,7 @@
         </Component>
         <Component class="javax.swing.JButton" name="BT_registrarMov">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Registro de Movimientos"/>
+            <Property name="text" type="java.lang.String" value="Registrar Movimientos"/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="BT_registrarMovActionPerformed"/>
@@ -140,14 +137,6 @@
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="BT_visualizarActionPerformed"/>
-          </Events>
-        </Component>
-        <Component class="javax.swing.JButton" name="BT_moverExpediente">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="Mover Expediente"/>
-          </Properties>
-          <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="BT_moverExpedienteActionPerformed"/>
           </Events>
         </Component>
       </SubComponents>
