@@ -78,5 +78,41 @@ public class Programa {
         return null;
 } 
     
+    public static String visualizarExpedientes() {
+        StringBuilder sb = new StringBuilder("EXPEDIENTES REGISTRADOS:\n");
+        NodoDoble<Expediente> actual = Programa.expedientes.getCabeza();
+        while (actual != null) {
+            Expediente exp = actual.getItem();
+            sb.append("ID: ").append(exp.getIdExpediente())
+              .append(" | Asunto: ").append(exp.getAsunto())
+              .append(" | Prioridad: ").append(exp.getPrioridad())
+              .append("\n");
+            actual = actual.getSgteNodo();
+        }
+        return sb.toString();
+    }
+    
+    
+    
+public static boolean cambiarExpediente(int idExpediente, Seguimiento cambio) {
+    if (cambio == null) {
+        return false;
+    }
+    
+    Expediente exp = BuscarExp(idExpediente);
+    
+    if (exp != null && exp.getFechaFin() == null) {
+        
+        if (cambio.getDependenciaOrigen().equals(cambio.getDependenciaDestino())) {
+            return false;
+        }
+        
+        
+        exp.agregarSeguimiento(cambio); 
+        return true;
+    }
+    return false;
+}
+    
     
 }
