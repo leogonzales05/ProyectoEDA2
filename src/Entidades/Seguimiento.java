@@ -11,36 +11,30 @@ package Entidades;
 public class Seguimiento {
     private String dependenciaOrigen;
     private String dependenciaDestino;
-    private Fecha fechaHoraMovimiento;
+    private Fecha fechaInicio;
+    private Fecha fechaFin;
 
-    public Seguimiento(String dependenciaOrigen, String dependenciaDestino, Fecha fechaHoraMovimiento) {
+    public Seguimiento(String dependenciaOrigen, String dependenciaDestino, Fecha fechaInicio, Fecha fechaFin) {
         this.dependenciaOrigen = dependenciaOrigen;
         this.dependenciaDestino = dependenciaDestino;
-        this.fechaHoraMovimiento = fechaHoraMovimiento;
+        this.fechaInicio = fechaInicio;
+        this.fechaFin = fechaFin;
     }
 
     public String getDependenciaOrigen() {
         return dependenciaOrigen;
     }
 
-    public void setDependenciaOrigen(String dependenciaOrigen) {
-        this.dependenciaOrigen = dependenciaOrigen;
-    }
-
     public String getDependenciaDestino() {
         return dependenciaDestino;
     }
 
-    public void setDependenciaDestino(String dependenciaDestino) {
-        this.dependenciaDestino = dependenciaDestino;
+    public Fecha getFechaInicio() {
+        return fechaInicio;
     }
 
-    public Fecha getFechaHoraMovimiento() {
-        return fechaHoraMovimiento;
-    }
-
-    public void setFechaHoraMovimiento(Fecha fechaHoraMovimiento) {
-        this.fechaHoraMovimiento = fechaHoraMovimiento;
+    public Fecha getFechaFin() {
+        return fechaFin;
     }
        
 }

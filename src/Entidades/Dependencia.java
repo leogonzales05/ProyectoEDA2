@@ -11,27 +11,31 @@ package Entidades;
 import TDA.*;
 public class Dependencia {
     private String nombre;
-    Cola cola= new Cola();
+    private Cola colaAlta;
+    private Cola colaMedia;
+    private Cola colaBaja;
 
     public Dependencia(String nombre) {
         this.nombre = nombre;
+        this.colaAlta = new Cola();
+        this.colaMedia = new Cola();
+        this.colaBaja = new Cola();        
     }
 
     public String getNombre() {
         return nombre;
     }
 
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
+    public Cola getColaAlta() {
+        return colaAlta;
     }
 
-    public Cola getCola() {
-        return cola;
+    public Cola getColaMedia() {
+        return colaMedia;
     }
 
-    public void setCola(Cola cola) {
-        this.cola = cola;
+    public Cola getColaBaja() {
+        return colaBaja;
     }
-    
     
 }
