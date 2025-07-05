@@ -4,11 +4,12 @@
  */
 package Interfaz;
 
+import Entidades.Dependencia;
 import Entidades.Documento;
-import Entidades.Expediente;
 import Entidades.Interesado;
 import Entidades.Programa;
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 /**
  *
  * @author Leonardo
@@ -137,22 +138,10 @@ public class RegistrarExp extends javax.swing.JFrame {
 
             },
             new String [] {
-                "id", "prioridad", "interesado", "asunto", "documentoRef", "seguimiento", "documentosTramites", "estado"
+                "ID", "Prioridad", "Interesado", "Asunto", "DocumentoRef", "Seguimiento", "Tramites", "Estado", "Fecha Inicio", "Fecha Fin"
             }
-        ) {
-            Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
-            };
-
-            public Class getColumnClass(int columnIndex) {
-                return types [columnIndex];
-            }
-        });
+        ));
         jScrollPane1.setViewportView(colaAlta);
-        if (colaAlta.getColumnModel().getColumnCount() > 0) {
-            colaAlta.getColumnModel().getColumn(0).setPreferredWidth(10);
-            colaAlta.getColumnModel().getColumn(1).setPreferredWidth(20);
-        }
 
         dni.setFont(new java.awt.Font("Microsoft PhagsPa", 0, 12)); // NOI18N
         dni.addActionListener(new java.awt.event.ActionListener() {
@@ -203,26 +192,20 @@ public class RegistrarExp extends javax.swing.JFrame {
 
         colaMedia.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "ID", "Prioridad", "Interesado", "Asunto", "Documento", "Seguimiento", "Trámite", "Estado", "Fecha Inicio", "Fecha Fin"
             }
         ));
         jScrollPane3.setViewportView(colaMedia);
 
         colaBaja.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "ID", "Prioridad", "Interesado", "Asunto", "Documento", "Seguimiento", "Trámites", "Estado", "Fecha Inicio", "Fecha Fin"
             }
         ));
         jScrollPane4.setViewportView(colaBaja);
@@ -254,11 +237,6 @@ public class RegistrarExp extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(26, 26, 26)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(350, 350, 350))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addGroup(jPanel1Layout.createSequentialGroup()
@@ -307,7 +285,7 @@ public class RegistrarExp extends javax.swing.JFrame {
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGap(30, 30, 30)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 892, Short.MAX_VALUE)
+                                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 942, Short.MAX_VALUE)
                                     .addComponent(jScrollPane3)
                                     .addComponent(jScrollPane4)
                                     .addGroup(jPanel1Layout.createSequentialGroup()
@@ -319,7 +297,12 @@ public class RegistrarExp extends javax.swing.JFrame {
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(RegistrarExpediente, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(26, 26, 26))))
+                        .addGap(26, 26, 26))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(398, 398, 398))))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -346,10 +329,10 @@ public class RegistrarExp extends javax.swing.JFrame {
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(telefono, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(email, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(email, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -404,9 +387,9 @@ public class RegistrarExp extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1200, Short.MAX_VALUE)
+            .addGap(0, 1250, Short.MAX_VALUE)
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 1200, Short.MAX_VALUE))
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 1250, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -437,15 +420,7 @@ public class RegistrarExp extends javax.swing.JFrame {
         String descripcionTexto = descripcion.getText().trim();
 
         if (!ValidarCampos.esDniValido(dniTexto)) {
-            JOptionPane.showMessageDialog(this, "DNI inválido. Máximo 8 dígitos numéricos.");
-            return;
-        }
-        if (!ValidarCampos.esTelefonoValido(telefonoTexto)) {
-            JOptionPane.showMessageDialog(this, "Teléfono inválido. Debe tener entre 6 y 15 dígitos numéricos.");
-            return;
-        }
-        if (!ValidarCampos.esEmailValido(emailTexto)) {
-            JOptionPane.showMessageDialog(this, "Correo inválido. Ingrese un correo válido.");
+            JOptionPane.showMessageDialog(this, "DNI inválido. Deben ser 8 dígitos numéricos.");
             return;
         }
         if (!ValidarCampos.esNoVacio(nombresTexto)) {
@@ -454,6 +429,14 @@ public class RegistrarExp extends javax.swing.JFrame {
         }
         if (!ValidarCampos.esNoVacio(apellidosTexto)) {
             JOptionPane.showMessageDialog(this, "Campo de Apellidos vacío, por favor completar.");
+            return;
+        }
+        if (!ValidarCampos.esTelefonoValido(telefonoTexto)) {
+            JOptionPane.showMessageDialog(this, "Teléfono inválido. Debe tener entre 6 y 15 dígitos numéricos.");
+            return;
+        }
+        if (!ValidarCampos.esEmailValido(emailTexto)) {
+            JOptionPane.showMessageDialog(this, "Correo inválido. Ingrese un correo válido.");
             return;
         }
         if (!ValidarCampos.esNoVacio(asuntoTexto)) {
@@ -475,22 +458,23 @@ public class RegistrarExp extends javax.swing.JFrame {
             break;
         }
         
-        Expediente nuevo;
         if(ValidarCampos.esDocumentoVacio(nombreDocTexto, formatoDocTexto)) {
-            nuevo = Programa.registrarExpediente(valuePrioridad, interesado, asuntoTexto, null);
+            Programa.registrarExpediente(valuePrioridad, interesado, asuntoTexto, null);
         }
         else{
             if (!ValidarCampos.esNoVacio(nombreDocTexto) || !ValidarCampos.esNoVacio(formatoDocTexto)) {
                 JOptionPane.showMessageDialog(this, "Campos del documento incompletos.");
             }
             Documento documentoReferencia = new Documento(nombreDocTexto, formatoDocTexto, descripcionTexto);
-            nuevo = Programa.registrarExpediente(valuePrioridad, interesado, asuntoTexto, documentoReferencia);
+            Programa.registrarExpediente(valuePrioridad, interesado, asuntoTexto, documentoReferencia);
         }
         
-        switch(valuePrioridad){
-            case 1:
-                
-    }
+        DefaultTableModel modeloAlta = (DefaultTableModel) colaAlta.getModel();
+        DefaultTableModel modeloMedia = (DefaultTableModel) colaMedia.getModel();
+        DefaultTableModel modeloBaja = (DefaultTableModel) colaBaja.getModel();
+
+        Programa.actualizaTablaMesaDePartes(modeloAlta, modeloMedia, modeloBaja);
+
     }//GEN-LAST:event_RegistrarExpedienteActionPerformed
 
     private void telefonoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_telefonoActionPerformed

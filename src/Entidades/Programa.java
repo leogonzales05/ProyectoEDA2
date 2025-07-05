@@ -4,16 +4,16 @@
  */
 package Entidades;
 import TDA.*;
-import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
 /**
  *
  * @author Leonardo
  */
 public class Programa {
-    private static ListaDobleEnlazada<Dependencia> listaDependencias;
-    private static Pila<Expediente> pilaExpedientesFinalizados;
+    private static ListaDobleEnlazada<Dependencia> listaDependencias = new ListaDobleEnlazada<>();
+    private static Pila<Expediente> pilaExpedientesFinalizados = new Pila<>();
     
-    public static Expediente registrarExpediente(int prioridad, Interesado interesado, String asunto, Documento documentoReferencia){
+    public static void registrarExpediente(int prioridad, Interesado interesado, String asunto, Documento documentoReferencia){
         Expediente nuevoExp = new Expediente(prioridad, interesado, asunto, documentoReferencia);
         Dependencia aux = listaDependencias.getCabeza().getItem();
         switch(prioridad){
@@ -27,7 +27,43 @@ public class Programa {
                 aux.getColaBaja().encolar(nuevoExp);
                 break;
         }
-        return nuevoExp;
+    }
+    
+    public static void actualizaTablaMesaDePartes(DefaultTableModel modeloAlta, DefaultTableModel modeloMedia, DefaultTableModel modeloBaja) {
+    Dependencia aux = listaDependencias.getCabeza().getItem();
+        actualizarTabla(modeloAlta, aux.getColaAlta());
+        actualizarTabla(modeloMedia, aux.getColaMedia());
+        actualizarTabla(modeloBaja, aux.getColaBaja());
+    }
+
+    
+    public static void actualizarTabla(DefaultTableModel modelo, Cola<Expediente> cola){
+        Cola<Expediente> tmp = new Cola<>();
+        modelo.setRowCount(0);
+        
+        while(!cola.esVacia()){
+            Expediente expediente = cola.desencolar();
+            Interesado interesado = expediente.getInteresado();
+            Documento documentoref = expediente.getDocumentoReferencia();
+            
+            modelo.addRow(new Object []{
+                expediente.getIdExpediente(),
+                expediente.getPrioridad(),
+                interesado.getNombres(),
+                expediente.getAsunto(),
+                (documentoref == null ? "Ninguno" : documentoref.getNombre()),
+                expediente.getListaSeguimiento(),
+                (expediente.getDocumentosTramites() == null ? "-" : expediente.getDocumentosTramites().toString()),
+                expediente.getEstado(),
+                expediente.getFechaIni().toString(),
+                (expediente.getFechaFin() == null ? "-" :expediente.getFechaFin().toString())
+            });
+            
+            tmp.encolar(expediente);
+        }
+        while(!tmp.esVacia()){
+            cola.encolar(tmp.desencolar());
+        }
     }
     
     public static void registrarDependencia(String nombre){       

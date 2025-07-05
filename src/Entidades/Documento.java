@@ -42,5 +42,9 @@ public class Documento {
     public void setTipo(String tipo) {
         this.tipo = tipo;
     }
-    
+
+    @Override
+    public String toString() {
+        return "Documento{" + "nombre=" + nombre + ", descripcion=" + descripcion + ", tipo=" + tipo + '}';
+    }
 }

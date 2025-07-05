@@ -10,10 +10,7 @@ package Interfaz;
  */
 public class ValidarCampos {
     public static boolean esDniValido(String dni){
-        if (dni == null) {
-            return false;
-        }
-        if (dni.length() > 8) {
+        if (dni == null || dni.length() != 8) {
             return false;
         }
         for (int i = 0; i < dni.length(); i++) {

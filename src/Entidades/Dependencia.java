@@ -11,9 +11,9 @@ package Entidades;
 import TDA.*;
 public class Dependencia {
     private String nombre;
-    private Cola colaAlta;
-    private Cola colaMedia;
-    private Cola colaBaja;
+    private Cola<Expediente> colaAlta;
+    private Cola<Expediente> colaMedia;
+    private Cola<Expediente> colaBaja;
 
     public Dependencia(String nombre) {
         this.nombre = nombre;
