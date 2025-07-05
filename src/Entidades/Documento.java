@@ -10,12 +10,12 @@ package Entidades;
  */
 public class Documento {
     private String nombre;
-    private String contenido;
+    private String descripcion;
     private String tipo;
 
-    public Documento(String nombre, String contenido, String tipo) {
+    public Documento(String nombre, String descripcion, String tipo) {
         this.nombre = nombre;
-        this.contenido = contenido;
+        this.descripcion = descripcion;
         this.tipo = tipo;
     }
 
@@ -28,11 +28,11 @@ public class Documento {
     }
 
     public String getContenido() {
-        return contenido;
+        return descripcion;
     }
 
-    public void setContenido(String contenido) {
-        this.contenido = contenido;
+    public void setContenido(String descripcion) {
+        this.descripcion = descripcion;
     }
 
     public String getTipo() {

@@ -4,28 +4,17 @@
  */
 package Entidades;
 import TDA.*;
-import TDA.ListaDobleEnlazada;
+import javax.swing.JTable;
 /**
  *
  * @author Leonardo
  */
 public class Programa {
-    private static Cola<Expediente> colaAtencion;
-    private static Pila<Documento> pilaHistorialAcciones;
     private static ListaDobleEnlazada<Dependencia> listaDependencias;
     private static Pila<Expediente> pilaExpedientesFinalizados;
-
-    public Cola<Expediente> getColaAtencion() {
-        return colaAtencion;
-    }
-
-
-    public Pila<Documento> getPilaHistorialAcciones() {
-        return pilaHistorialAcciones;
-    }
     
-    public static void registrarExpediente(int prioridad, Interesado interesado, String asunto, Documento documentoRef){
-        Expediente nuevoExp = new Expediente(prioridad, interesado, asunto, documentoRef);
+    public static Expediente registrarExpediente(int prioridad, Interesado interesado, String asunto, Documento documentoReferencia){
+        Expediente nuevoExp = new Expediente(prioridad, interesado, asunto, documentoReferencia);
         Dependencia aux = listaDependencias.getCabeza().getItem();
         switch(prioridad){
             case 1:
@@ -37,26 +26,15 @@ public class Programa {
             case 3:
                 aux.getColaBaja().encolar(nuevoExp);
         }
+        return nuevoExp;
     }
     
     public static void registrarDependencia(String nombre){       
         Dependencia dependencia= new Dependencia(nombre);
         listaDependencias.agregarFinal(dependencia);
-    }
+    }   
     
-    public static Expediente BuscarExp(int id){
-        NodoDoble<Expediente> aux = expedientes.getCabeza();
-        
-        while(aux != null){
-            if(aux.getItem().getIdExpediente() == id){
-                return aux.getItem();
-            }
-            aux = aux.getSgteNodo();
-        }
-        
-        return null;
-} 
-    
+    /*
     public static String visualizarExpedientes() {
         StringBuilder sb = new StringBuilder("EXPEDIENTES REGISTRADOS:\n");
         NodoDoble<Expediente> actual = Programa.expedientes.getCabeza();
@@ -70,9 +48,9 @@ public class Programa {
         }
         return sb.toString();
     }
+    */
     
-    
-    
+    /*
     public static boolean cambiarExpediente(int idExpediente, Seguimiento cambio) {
         if (cambio == null) {
             return false;
@@ -92,5 +70,6 @@ public class Programa {
         }
         return false;
     }
+    */
     
 }

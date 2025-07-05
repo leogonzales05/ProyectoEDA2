@@ -22,11 +22,6 @@ public class Expediente {
     private ListaSimpleEnlazada<Seguimiento> listaSeguimiento;
     private Pila<Documento> documentosTramites;
     private String estado;
-
-    public Expediente(int prioridad, Interesado interesado, String asunto) {
-        this(prioridad, interesado, asunto, null);
-    }   
-
     
     public Expediente(int prioridad, Interesado interesado, String asunto, Documento documentoReferencia) {
         this.idExpediente = contadorId++;
@@ -79,6 +74,10 @@ public class Expediente {
 
     public String getEstado() {
         return estado;
+    }
+
+    public void setDocumentoReferencia(Documento documentoReferencia) {
+        this.documentoReferencia = documentoReferencia;
     }
     
     public void agregarDocumentos(Documento documento){

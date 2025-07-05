@@ -20,6 +20,11 @@ public class ScreenManager {
         newScreen.setVisible(true);
     }
     
+    public static void openExtraScreen(JFrame extraScreen){
+        pila.apilar(extraScreen);
+        extraScreen.setVisible(true);
+    }
+    
     public static void goBack(JFrame currentScreen) {
         currentScreen.dispose();
         pila.desapilar().setVisible(true);

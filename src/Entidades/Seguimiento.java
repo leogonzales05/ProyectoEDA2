@@ -36,5 +36,12 @@ public class Seguimiento {
     public Fecha getFechaFin() {
         return fechaFin;
     }
+
+    @Override
+    public String toString() {
+        return "Seguimiento{" + "dependenciaOrigen=" + dependenciaOrigen + ", dependenciaDestino=" + dependenciaDestino + ", fechaInicio=" + fechaInicio + ", fechaFin=" + fechaFin + '}';
+    }
+    
+    
        
 }

@@ -9,14 +9,14 @@ package Entidades;
  * @author Leonardo
  */
 public class Interesado {
-    private int dni;
+    private String dni;
     private String nombres;
     private String apellidos;
-    private int telefono;
+    private String telefono;
     private String email;
     private String tipo;
 
-    public Interesado(int dni, String nombre,String apellidos, int telefono, String email, String tipo) {
+    public Interesado(String dni, String nombre,String apellidos, String telefono, String email, String tipo) {
         this.dni = dni;
         this.nombres = nombre;
         this.apellidos = apellidos;
@@ -25,11 +25,11 @@ public class Interesado {
         this.tipo = tipo;
     }
 
-    public int getDni() {
+    public String getDni() {
         return dni;
     }
 
-    public void setDni(int dni) {
+    public void setDni(String dni) {
         this.dni = dni;
     }
 
@@ -49,11 +49,11 @@ public class Interesado {
         this.apellidos = apellidos;
     }
 
-    public int getTelefono() {
+    public String getTelefono() {
         return telefono;
     }
 
-    public void setTelefono(int telefono) {
+    public void setTelefono(String telefono) {
         this.telefono = telefono;
     }
 

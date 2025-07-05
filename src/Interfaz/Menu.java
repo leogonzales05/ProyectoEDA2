@@ -108,7 +108,7 @@ public class Menu extends javax.swing.JFrame {
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(123, 123, 123)
+                .addGap(130, 130, 130)
                 .addComponent(BT_registrarDP, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(BT_RegistrarExpediente, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -120,7 +120,7 @@ public class Menu extends javax.swing.JFrame {
                 .addComponent(BT_registrarFinal, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(BT_buscarExpediente, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(137, Short.MAX_VALUE))
+                .addContainerGap(130, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -139,26 +139,26 @@ public class Menu extends javax.swing.JFrame {
 
     private void BT_RegistrarExpedienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BT_RegistrarExpedienteActionPerformed
         // TODO add your handling code here:
-        RegistrarExp registrarExp=new RegistrarExp();
-        ScreenManager.openNewScreen(this, registrarExp);
+        RegistrarExp registrarExpediente=new RegistrarExp();
+        ScreenManager.openNewScreen(this, registrarExpediente);
     }//GEN-LAST:event_BT_RegistrarExpedienteActionPerformed
 
     private void BT_registrarMovActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BT_registrarMovActionPerformed
         // TODO add your handling code here:
-        RegistrarMov registrarMov=new RegistrarMov();
-        ScreenManager.openNewScreen(this, registrarMov);
+        RegistrarMov registrarMovimiento=new RegistrarMov();
+        ScreenManager.openNewScreen(this, registrarMovimiento);
     }//GEN-LAST:event_BT_registrarMovActionPerformed
 
     private void BT_registrarDPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BT_registrarDPActionPerformed
         // TODO add your handling code here:
-        RegistrarDependencia registrarDependencia=new RegistrarDependencia();
+        RegistrarDep registrarDependencia=new RegistrarDep();
         ScreenManager.openNewScreen(this, registrarDependencia);
         
     }//GEN-LAST:event_BT_registrarDPActionPerformed
 
     private void BT_registrarFinalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BT_registrarFinalActionPerformed
         // TODO add your handling code here:
-        RegistrarFinalizacion registrarFinalizacion= new RegistrarFinalizacion();
+        FinalizarTramite registrarFinalizacion= new FinalizarTramite();
         ScreenManager.openNewScreen(this, registrarFinalizacion);
     }//GEN-LAST:event_BT_registrarFinalActionPerformed
 
@@ -168,10 +168,9 @@ public class Menu extends javax.swing.JFrame {
         ScreenManager.openNewScreen(this, buscarExpediente);
     }//GEN-LAST:event_BT_buscarExpedienteActionPerformed
 
+    
     private void BT_visualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BT_visualizarActionPerformed
         // TODO add your handling code here:
-        VisualizarExpedientes visualizarExpedientes=new VisualizarExpedientes();
-        ScreenManager.openNewScreen(this, visualizarExpedientes);
     }//GEN-LAST:event_BT_visualizarActionPerformed
 
     /**
