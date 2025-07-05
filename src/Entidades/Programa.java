@@ -25,6 +25,7 @@ public class Programa {
                 break;
             case 3:
                 aux.getColaBaja().encolar(nuevoExp);
+                break;
         }
         return nuevoExp;
     }
