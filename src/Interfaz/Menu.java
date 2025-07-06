@@ -145,8 +145,8 @@ public class Menu extends javax.swing.JFrame {
 
     private void BT_registrarMovActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BT_registrarMovActionPerformed
         // TODO add your handling code here:
-        RegistrarMov registrarMovimiento=new RegistrarMov();
-        ScreenManager.openNewScreen(this, registrarMovimiento);
+        RegistrarMov registrarMov=new RegistrarMov();
+        ScreenManager.openNewScreen(this, registrarMov);
     }//GEN-LAST:event_BT_registrarMovActionPerformed
 
     private void BT_registrarDPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BT_registrarDPActionPerformed

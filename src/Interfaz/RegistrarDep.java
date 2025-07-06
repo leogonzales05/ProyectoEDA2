@@ -4,6 +4,13 @@
  */
 package Interfaz;
 
+import Entidades.Dependencia;
+import Entidades.Programa;
+import TDA.ListaDobleEnlazada;
+import TDA.NodoDoble;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author Leonardo
@@ -13,9 +20,79 @@ public class RegistrarDep extends javax.swing.JFrame {
     /**
      * Creates new form RegistrarDep
      */
-    public RegistrarDep() {
-        initComponents();
+    private DefaultTableModel modeloTabla;
+public RegistrarDep() {
+    initComponents();
+    initButtonActions(); // Añade esta línea
+    initTabla();  
+}
+
+
+private void initTabla() {
+    // Configura el modelo de tabla
+    modeloTabla = new DefaultTableModel(
+            new Object[][]{},
+            new String[]{"Nombre de Dependencia"}
+    ) {
+        @Override
+        public boolean isCellEditable(int row, int column) {
+            return false;
+        }
+    };
+    jTable1.setModel(modeloTabla);
+    cargarDependenciasEnTabla();
+}
+
+private void cargarDependenciasEnTabla() {
+    modeloTabla.setRowCount(0);  // Limpiar tabla
+    
+    ListaDobleEnlazada<Dependencia> dependencias = Programa.getListaDependencias();
+    if (dependencias != null && !dependencias.esVacia()) {
+        NodoDoble<Dependencia> actual = dependencias.getCabeza();
+        while (actual != null) {
+            modeloTabla.addRow(new Object[]{actual.getItem().getNombre()});
+            actual = actual.getSgteNodo();
+        }
     }
+}
+private void initButtonActions() {
+    jButton2.addActionListener(new java.awt.event.ActionListener() {
+        public void actionPerformed(java.awt.event.ActionEvent evt) {
+            String nombreDependencia = jTextField1.getText().trim();
+            
+            if (!nombreDependencia.isEmpty()) {
+                Programa.registrarDependencia(nombreDependencia);
+                cargarDependenciasEnTabla();
+                jTextField1.setText("");
+                JOptionPane.showMessageDialog(RegistrarDep.this, "¡Dependencia registrada!");
+            } else {
+                JOptionPane.showMessageDialog(RegistrarDep.this, 
+                    "Error: Nombre vacío", 
+                    "Advertencia", 
+                    JOptionPane.WARNING_MESSAGE);
+            }
+        }
+    });
+}
+
+private void configurarTabla() {
+    DefaultTableModel modelo = new DefaultTableModel(
+        new Object[][]{},                       // Datos vacíos inicialmente
+        new String[]{"Nombre de Dependencia"}  // Encabezado de columna
+    ) {
+        @Override
+        public boolean isCellEditable(int row, int column) {
+            return false; // Hacer que la tabla no sea editable
+        }
+    };
+    jTable1.setModel(modelo); // Asigna el modelo a la tabla
+}
+
+
+
+
+
+
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -63,11 +140,24 @@ public class RegistrarDep extends javax.swing.JFrame {
             new String [] {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                true, true, true, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         jScrollPane1.setViewportView(jTable1);
 
         jButton2.setFont(new java.awt.Font("Microsoft PhagsPa", 0, 12)); // NOI18N
         jButton2.setText("Registrar Dependencia");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         jTextField1.setFont(new java.awt.Font("Microsoft PhagsPa", 0, 12)); // NOI18N
 
@@ -124,7 +214,14 @@ public class RegistrarDep extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
+        ScreenManager.goBack(this);
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+      
+
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
      * @param args the command line arguments

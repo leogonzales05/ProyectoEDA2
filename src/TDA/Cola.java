@@ -4,6 +4,8 @@
  */
 package TDA;
 
+import Entidades.Expediente;
+
 /**
  *
  * @author Leonardo
@@ -44,4 +46,49 @@ public class Cola<T> {
             return itemAux;
         }
     }
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    public void eliminarExpediente(String id) {
+        Cola<T> temp = new Cola<>();
+        boolean encontrado = false;
+        
+        while (!this.esVacia()) {
+            T item = this.desencolar();
+            if (item instanceof Expediente exp) {
+                if (!String.valueOf(exp.getIdExpediente()).equals(id)) {
+                    temp.encolar(item);
+                } else {
+                    encontrado = true;
+                }
+            } else {
+                temp.encolar(item);
+            }
+        }
+        
+        while (!temp.esVacia()) this.encolar(temp.desencolar());
+        
+        if (!encontrado) {
+            throw new RuntimeException("Expediente no encontrado");
+    
+    
+    
+    
+    
+        }
+}
 }

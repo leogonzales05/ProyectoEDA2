@@ -403,6 +403,7 @@ public class RegistrarExp extends javax.swing.JFrame {
 
     private void VolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_VolverActionPerformed
         // TODO add your handling code here:
+        ScreenManager.goBack(this);
     }//GEN-LAST:event_VolverActionPerformed
 
     private void RegistrarExpedienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RegistrarExpedienteActionPerformed
