@@ -40,8 +40,5 @@ public class Seguimiento {
     @Override
     public String toString() {
         return "Seguimiento{" + "dependenciaOrigen=" + dependenciaOrigen + ", dependenciaDestino=" + dependenciaDestino + ", fechaInicio=" + fechaInicio + ", fechaFin=" + fechaFin + '}';
-    }
-    
-    
-       
+    }  
 }

@@ -23,24 +23,12 @@ public class Documento {
         return nombre;
     }
 
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
-    }
-
     public String getContenido() {
         return descripcion;
     }
 
-    public void setContenido(String descripcion) {
-        this.descripcion = descripcion;
-    }
-
     public String getTipo() {
         return tipo;
-    }
-
-    public void setTipo(String tipo) {
-        this.tipo = tipo;
     }
 
     @Override

@@ -64,10 +64,6 @@ public class Expediente {
         return fechaFin;
     }
 
-    public void setFechaFin(Fecha fechaFin) {
-        this.fechaFin = fechaFin;
-    }
-
     public ListaSimpleEnlazada<Seguimiento> getListaSeguimiento() {
         return listaSeguimiento;
     }
@@ -84,10 +80,10 @@ public class Expediente {
         this.estado = estado;
     }
 
-    public void setDocumentoReferencia(Documento documentoReferencia) {
-        this.documentoReferencia = documentoReferencia;
+    public void setFechaFin(Fecha fechaFin) {
+        this.fechaFin = fechaFin;
     }
-    
+
     public void agregarDocumentos(Documento documento){
         this.documentosTramites.apilar(documento);
     }

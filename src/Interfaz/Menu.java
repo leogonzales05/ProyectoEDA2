@@ -32,7 +32,6 @@ public class Menu extends javax.swing.JFrame {
         BT_registrarFinal = new javax.swing.JButton();
         BT_buscarExpediente = new javax.swing.JButton();
         BT_registrarDP = new javax.swing.JButton();
-        BT_visualizar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setSize(new java.awt.Dimension(700, 500));
@@ -74,18 +73,10 @@ public class Menu extends javax.swing.JFrame {
         });
 
         BT_registrarDP.setFont(new java.awt.Font("Microsoft PhagsPa", 0, 12)); // NOI18N
-        BT_registrarDP.setText("Registrar dependencia");
+        BT_registrarDP.setText("Registrar Dependencia");
         BT_registrarDP.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 BT_registrarDPActionPerformed(evt);
-            }
-        });
-
-        BT_visualizar.setFont(new java.awt.Font("Microsoft PhagsPa", 0, 12)); // NOI18N
-        BT_visualizar.setText("Visualizar Expedientes Registrados");
-        BT_visualizar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BT_visualizarActionPerformed(evt);
             }
         });
 
@@ -94,44 +85,41 @@ public class Menu extends javax.swing.JFrame {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(238, 238, 238)
+                .addGap(237, 237, 237)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(BT_registrarDP, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(BT_visualizar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(BT_registrarMov, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(BT_registrarFinal, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(BT_buscarExpediente, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(BT_RegistrarExpediente, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(237, Short.MAX_VALUE))
+                .addContainerGap(238, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(130, 130, 130)
+                .addGap(152, 152, 152)
                 .addComponent(BT_registrarDP, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(BT_RegistrarExpediente, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(BT_visualizar, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(BT_registrarMov, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(BT_registrarFinal, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(BT_buscarExpediente, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(130, Short.MAX_VALUE))
+                .addContainerGap(151, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         pack();
@@ -167,10 +155,6 @@ public class Menu extends javax.swing.JFrame {
         BuscarExpediente buscarExpediente= new BuscarExpediente();
         ScreenManager.openNewScreen(this, buscarExpediente);
     }//GEN-LAST:event_BT_buscarExpedienteActionPerformed
-
-    private void BT_visualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BT_visualizarActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_BT_visualizarActionPerformed
 
     
     /**
@@ -214,7 +198,6 @@ public class Menu extends javax.swing.JFrame {
     private javax.swing.JButton BT_registrarDP;
     private javax.swing.JButton BT_registrarFinal;
     private javax.swing.JButton BT_registrarMov;
-    private javax.swing.JButton BT_visualizar;
     private javax.swing.JPanel jPanel1;
     // End of variables declaration//GEN-END:variables
 }

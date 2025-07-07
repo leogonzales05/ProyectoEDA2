@@ -278,7 +278,7 @@ public class Programa {
             Expediente exp = cola.desencolar();
             if(eliminado == null && exp.getIdExpediente() == id){
                 exp.setFechaFin(Fecha.Exacta());
-                exp.setEstado("Finalizado");
+                exp.setEstado(EstadoTramite.FINALIZADO);
                 pilaExpedientesFinalizados.apilar(exp);
                 eliminado = exp;
             }else{

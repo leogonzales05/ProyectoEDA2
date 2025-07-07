@@ -4,7 +4,9 @@
  */
 package Interfaz;
 
-import ControlUsuarios.*;
+import Control.ListaAdministrador;
+import Control.Temporizador;
+import Control.Usuario;
 import Entidades.Programa;
 import TDA.*;
 import javax.swing.JOptionPane;

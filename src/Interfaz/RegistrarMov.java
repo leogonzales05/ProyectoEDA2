@@ -20,149 +20,149 @@ import javax.swing.table.DefaultTableModel;
  */
 public class RegistrarMov extends javax.swing.JFrame {
 // ... (imports y declaración de clase permanecen igual)
-private DefaultTableModel modeloTabla;
-public RegistrarMov() {
-        initComponents();
-        configurarTabla();
-        
-        cargarDependenciasEnComboBox();
-        cargarPrioridadesEnComboBox();
-        jComboBox1.addActionListener(e -> filtrarExpedientes());
-        jComboBox2.addActionListener(e -> filtrarExpedientes());
-        jComboBox1.addActionListener(e -> actualizarDependenciasDestino());
-        filtrarExpedientes();
+    private DefaultTableModel modeloTabla;
+    public RegistrarMov() {
+            initComponents();
+            configurarTabla();
+
+            cargarDependenciasEnComboBox();
+            cargarPrioridadesEnComboBox();
+            jComboBox1.addActionListener(e -> filtrarExpedientes());
+            jComboBox2.addActionListener(e -> filtrarExpedientes());
+            jComboBox1.addActionListener(e -> actualizarDependenciasDestino());
+            filtrarExpedientes();
+        }
+
+
+    private void cargarPrioridadesEnComboBox() {
+        jComboBox2.removeAllItems(); // Limpiar primero
+
+            // Agregar las opciones de prioridad
+            jComboBox2.addItem("Alta (1)");
+            jComboBox2.addItem("Media (2)");
+            jComboBox2.addItem("Baja (3)");
+
+            // Opcional: seleccionar una por defecto
+            jComboBox2.setSelectedIndex(0); // Selecciona "Alta (1)"
     }
 
 
-private void cargarPrioridadesEnComboBox() {
-    jComboBox2.removeAllItems(); // Limpiar primero
-        
-        // Agregar las opciones de prioridad
-        jComboBox2.addItem("Alta (1)");
-        jComboBox2.addItem("Media (2)");
-        jComboBox2.addItem("Baja (3)");
-        
-        // Opcional: seleccionar una por defecto
-        jComboBox2.setSelectedIndex(0); // Selecciona "Alta (1)"
-}
+    private void cargarDependenciasEnComboBox() {
+            jComboBox1.removeAllItems();    
+            jComboBox3.removeAllItems(); 
+            ListaDobleEnlazada<Dependencia> dependencias = Programa.getListaDependencias();
 
+            if (dependencias != null && !dependencias.esVacia()) {
+                NodoDoble<Dependencia> nodoActual = dependencias.getCabeza();
 
-private void cargarDependenciasEnComboBox() {
-        jComboBox1.removeAllItems();    
-        jComboBox3.removeAllItems(); 
+                while (nodoActual != null) {
+                    String nombreDependencia = nodoActual.getItem().getNombre();
+                    jComboBox1.addItem(nombreDependencia);
+                    jComboBox3.addItem(nombreDependencia);
+                    nodoActual = nodoActual.getSgteNodo();
+                }
+            } 
+        }
+
+    private void actualizarDependenciasDestino() {
+        String dependenciaOrigen = (String) jComboBox1.getSelectedItem();
+        jComboBox3.removeAllItems();
         ListaDobleEnlazada<Dependencia> dependencias = Programa.getListaDependencias();
-        
         if (dependencias != null && !dependencias.esVacia()) {
             NodoDoble<Dependencia> nodoActual = dependencias.getCabeza();
-            
             while (nodoActual != null) {
                 String nombreDependencia = nodoActual.getItem().getNombre();
-                jComboBox1.addItem(nombreDependencia);
-                jComboBox3.addItem(nombreDependencia);
-                nodoActual = nodoActual.getSgteNodo();
-            }
-        } 
-    }
-
-private void actualizarDependenciasDestino() {
-    String dependenciaOrigen = (String) jComboBox1.getSelectedItem();
-    jComboBox3.removeAllItems();
-    ListaDobleEnlazada<Dependencia> dependencias = Programa.getListaDependencias();
-    if (dependencias != null && !dependencias.esVacia()) {
-        NodoDoble<Dependencia> nodoActual = dependencias.getCabeza();
-        while (nodoActual != null) {
-            String nombreDependencia = nodoActual.getItem().getNombre();
-            if (!nombreDependencia.equals(dependenciaOrigen)) {
-                jComboBox3.addItem(nombreDependencia);
-            }
-                nodoActual = nodoActual.getSgteNodo();
-        }
-    }
-        // Seleccionar el primer elemento si hay opciones disponibles
-    if (jComboBox3.getItemCount() > 0) {
-        jComboBox3.setSelectedIndex(0);
-    }
-}
-
-public void actualizarComboBoxDependencias() {
-    cargarDependenciasEnComboBox();
-}
-    
-private void agregarExpedientesDeCola(Cola<Expediente> cola) {
-    if (cola == null) return;
-    
-    Cola<Expediente> temp = new Cola<>();
-    while (!cola.esVacia()) {
-        Expediente exp = cola.desencolar();
-        temp.encolar(exp);
-
-        modeloTabla.addRow(new Object[]{
-            exp.getIdExpediente(),
-            "Prioridad " + exp.getPrioridad(),
-            exp.getInteresado().getNombres(),
-            exp.getAsunto(),
-            
-        });
-    }
-    while (!temp.esVacia()) {
-        cola.encolar(temp.desencolar());
-    }
-}
-
-private void filtrarExpedientes() {
-    modeloTabla.setRowCount(0); // Limpiar tabla
-    String dependenciaSeleccionada = (String) jComboBox1.getSelectedItem();
-    String prioridadSeleccionada = (String) jComboBox2.getSelectedItem();
-    if (dependenciaSeleccionada == null) return;
-    ListaDobleEnlazada<Dependencia> dependencias = Programa.getListaDependencias();
-    if (dependencias != null) {
-        NodoDoble<Dependencia> actual = dependencias.getCabeza();
-        while (actual != null) {
-            Dependencia dep = actual.getItem();
-            if (dep.getNombre().equals(dependenciaSeleccionada)) {
-                if (prioridadSeleccionada.equals("Alta (1)") || prioridadSeleccionada.contains("1")) {
-                    agregarExpedientesDeCola(dep.getColaAlta());
+                if (!nombreDependencia.equals(dependenciaOrigen)) {
+                    jComboBox3.addItem(nombreDependencia);
                 }
-                if (prioridadSeleccionada.equals("Media (2)") || prioridadSeleccionada.contains("2")) {
-                    agregarExpedientesDeCola(dep.getColaMedia());
-                }
-                if (prioridadSeleccionada.equals("Baja (3)") || prioridadSeleccionada.contains("3")) {
-                    agregarExpedientesDeCola(dep.getColaBaja());
-                }
-                break; // Salir del bucle una vez encontrada la dependencia
+                    nodoActual = nodoActual.getSgteNodo();
             }
-            actual = actual.getSgteNodo();
+        }
+            // Seleccionar el primer elemento si hay opciones disponibles
+        if (jComboBox3.getItemCount() > 0) {
+            jComboBox3.setSelectedIndex(0);
         }
     }
-}
 
-private void configurarTabla() {
-    modeloTabla = new DefaultTableModel(
-        new Object[][]{},
-        new String[]{"ID", "Prioridad", "Interesado", "Asunto", "Estado"}
-    ){
-        @Override
-        public boolean isCellEditable(int row, int column) {
-            return false;
+    public void actualizarComboBoxDependencias() {
+        cargarDependenciasEnComboBox();
+    }
+
+    private void agregarExpedientesDeCola(Cola<Expediente> cola) {
+        if (cola == null) return;
+
+        Cola<Expediente> temp = new Cola<>();
+        while (!cola.esVacia()) {
+            Expediente exp = cola.desencolar();
+            temp.encolar(exp);
+
+            modeloTabla.addRow(new Object[]{
+                exp.getIdExpediente(),
+                "Prioridad " + exp.getPrioridad(),
+                exp.getInteresado().getNombres(),
+                exp.getAsunto(),
+
+            });
         }
-    };
-    jTable1.setModel(modeloTabla);
-}
-    public void actualizarTabla() {
-    filtrarExpedientes();
-    
-}
-    
-private boolean esIdValido(String id) {
-    // Verifica primero en la tabla visible (datos ya filtrados)
-    for (int i = 0; i < jTable1.getRowCount(); i++) {
-        String idEnTabla = jTable1.getValueAt(i, 0).toString(); // Columna 0 = ID
-        if (idEnTabla.equals(id)) {
-            return true;
+        while (!temp.esVacia()) {
+            cola.encolar(temp.desencolar());
         }
     }
-    return false;
-}
+
+    private void filtrarExpedientes() {
+        modeloTabla.setRowCount(0); // Limpiar tabla
+        String dependenciaSeleccionada = (String) jComboBox1.getSelectedItem();
+        String prioridadSeleccionada = (String) jComboBox2.getSelectedItem();
+        if (dependenciaSeleccionada == null) return;
+        ListaDobleEnlazada<Dependencia> dependencias = Programa.getListaDependencias();
+        if (dependencias != null) {
+            NodoDoble<Dependencia> actual = dependencias.getCabeza();
+            while (actual != null) {
+                Dependencia dep = actual.getItem();
+                if (dep.getNombre().equals(dependenciaSeleccionada)) {
+                    if (prioridadSeleccionada.equals("Alta (1)") || prioridadSeleccionada.contains("1")) {
+                        agregarExpedientesDeCola(dep.getColaAlta());
+                    }
+                    if (prioridadSeleccionada.equals("Media (2)") || prioridadSeleccionada.contains("2")) {
+                        agregarExpedientesDeCola(dep.getColaMedia());
+                    }
+                    if (prioridadSeleccionada.equals("Baja (3)") || prioridadSeleccionada.contains("3")) {
+                        agregarExpedientesDeCola(dep.getColaBaja());
+                    }
+                    break; // Salir del bucle una vez encontrada la dependencia
+                }
+                actual = actual.getSgteNodo();
+            }
+        }
+    }
+
+    private void configurarTabla() {
+        modeloTabla = new DefaultTableModel(
+            new Object[][]{},
+            new String[]{"ID", "Prioridad", "Interesado", "Asunto", "Estado"}
+        ){
+            @Override
+            public boolean isCellEditable(int row, int column) {
+                return false;
+            }
+        };
+        jTable1.setModel(modeloTabla);
+    }
+        public void actualizarTabla() {
+        filtrarExpedientes();
+
+    }
+
+    private boolean esIdValido(String id) {
+        // Verifica primero en la tabla visible (datos ya filtrados)
+        for (int i = 0; i < jTable1.getRowCount(); i++) {
+            String idEnTabla = jTable1.getValueAt(i, 0).toString(); // Columna 0 = ID
+            if (idEnTabla.equals(id)) {
+                return true;
+            }
+        }
+        return false;
+    }
 
     /**
      * Creates new form RegistrarMov
@@ -288,28 +288,43 @@ private boolean esIdValido(String id) {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:    
-    jButton2.addActionListener(e -> {
-    String idIngresado = jTextField2.getText().trim();
-    
-    if (idIngresado.isEmpty()) {
-        JOptionPane.showMessageDialog(this, "Ingrese un ID", "Error", JOptionPane.ERROR_MESSAGE);
-        return;
-    }
-    if (esIdValido(idIngresado)) {
-        jTextField2.setBackground(Color.WHITE);
-        JOptionPane.showMessageDialog(this, "ID válido: " + idIngresado);
-    } else {
-        jTextField2.setBackground(new Color(255, 200, 200));
+        String idExpediente = jTextField2.getText().trim();
+    String dependenciaOrigen = (String) jComboBox1.getSelectedItem();
+    String dependenciaDestino = (String) jComboBox3.getSelectedItem();
+    String prioridad = (String) jComboBox2.getSelectedItem();
+
+    if (!esIdValido(idExpediente)) {
         JOptionPane.showMessageDialog(this, 
             "ID no encontrado en los resultados filtrados", 
             "Error", 
             JOptionPane.ERROR_MESSAGE);
+        jTextField2.setBackground(new Color(255, 200, 200));  
+        return;
     }
-        });
+
+    boolean movido = Programa.moverExpediente(idExpediente, dependenciaDestino);
+
+    if (movido) {
+        JOptionPane.showMessageDialog(this, 
+            "Expediente movido exitosamente de " + dependenciaOrigen + " a " + dependenciaDestino, 
+            "Éxito", 
+            JOptionPane.INFORMATION_MESSAGE);
+
+        jComboBox1.setSelectedItem(dependenciaDestino);
+
+        filtrarExpedientes();
+
+    } else {
+        JOptionPane.showMessageDialog(this, 
+            "Error: No se pudo mover el expediente. Verifique el ID o las dependencias.", 
+            "Error", 
+            JOptionPane.ERROR_MESSAGE);
+    }
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jComboBox2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox2ActionPerformed
         // TODO add your handling code here:
+
     }//GEN-LAST:event_jComboBox2ActionPerformed
 
     /**

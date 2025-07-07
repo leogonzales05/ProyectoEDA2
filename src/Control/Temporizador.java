@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package ControlUsuarios;
+package Control;
 import Entidades.Expediente;
 import Entidades.Programa;
 import java.util.Timer;
@@ -34,11 +34,17 @@ public class Temporizador {
         if (exp != null) {
             JOptionPane.showMessageDialog(null,
                 """
-                Expediente m\u00e1s urgente:
-                C\u00f3digo: """ + exp.getIdExpediente() + "\n" +
-                "Fecha: " + exp.getFechaIni().toString() + "\n" +
+                Expediente más urgente:
+                Código: """ + exp.getIdExpediente() + "\n" +
+                "DNI: " + exp.getInteresado().getDni() + "\n" +
+                "Nombres: " + exp.getInteresado().getNombres() + "\n" + 
+                "Apellidos: " + exp.getInteresado().getApellidos() + "\n" +
+                "Seguimiento: " + (exp.getListaSeguimiento().esVacia() ? "No se han registrado movimientos" : exp.getListaSeguimiento().toString()) + "\n" +
+                "Documento: " + (exp.getDocumentosTramites().esVacia() ? "No se han registrado documentos" : exp.getDocumentosTramites().toString()) + "\n" +
+                "Fecha-Inicio: " + exp.getFechaIni().toString() + "\n" +
                 "Asunto: " + exp.getAsunto());
-        } else {
+        }
+        else {
             JOptionPane.showMessageDialog(null, "No hay expedientes pendientes en prioridad alta.");
         }
     }

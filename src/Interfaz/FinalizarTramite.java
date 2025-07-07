@@ -181,28 +181,26 @@ public class FinalizarTramite extends javax.swing.JFrame {
 
     private void btFinalizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btFinalizarActionPerformed
 
-         int id = Integer.parseInt(this.txtID.getText());
-      String prioridad = this.CBoxPrioridad.getSelectedItem().toString();
+    int id = Integer.parseInt(this.txtID.getText());
+    String prioridad = this.CBoxPrioridad.getSelectedItem().toString();
       modeloTabla.setRowCount(0);
       
-      Expediente exp = Programa.finalizar(id, prioridad);
-      if (exp != null){
-          String[] fila = new String[8];
-          fila[0] = String.valueOf(exp.getPrioridad());
-          fila[1] = String.valueOf(exp.getInteresado().getNombres());
-          fila[2] = String.valueOf(exp.getInteresado().getDni());
-          fila[3] = String.valueOf(exp.getAsunto());
-          fila[4] = String.valueOf(exp.getDocumentoReferencia());
-          fila[5] = exp.getEstado();
-          fila[6] = exp.getFechaIni().toString();
-          fila[7] = exp.getFechaFin().toString();
-          modeloTabla.addRow(fila);
+    Expediente exp = Programa.finalizar(id, prioridad);
+        if (exp != null){
+            String[] fila = new String[8];
+            fila[0] = String.valueOf(exp.getPrioridad());
+            fila[1] = String.valueOf(exp.getInteresado().getNombres());
+            fila[2] = String.valueOf(exp.getInteresado().getDni());
+            fila[3] = String.valueOf(exp.getAsunto());
+            fila[4] = String.valueOf(exp.getDocumentoReferencia());
+            fila[5] = exp.getEstado();
+            fila[6] = exp.getFechaIni().toString();
+            fila[7] = exp.getFechaFin().toString();
+            modeloTabla.addRow(fila);
           }
-      else{
+        else{
           JOptionPane.showMessageDialog(this, "No se encontró el expediente con ID :");
       }
-        
-
     }//GEN-LAST:event_btFinalizarActionPerformed
 
     private void txtIDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtIDActionPerformed
