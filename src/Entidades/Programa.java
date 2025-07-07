@@ -133,7 +133,6 @@ public class Programa {
     
     private static boolean moverEntreColas(Dependencia origen, Dependencia destino, Expediente exp, String tipoCola) {
         try {
-            // Eliminar de origen
             Cola<Expediente> colaOrigen = switch(tipoCola) {
                 case "ALTA" -> origen.getColaAlta();
                 case "MEDIA" -> origen.getColaMedia();
@@ -141,8 +140,6 @@ public class Programa {
                 default -> null;
             };
             colaOrigen.eliminarExpediente(String.valueOf(exp.getIdExpediente()));
-            
-            // Agregar a destino según prioridad
             switch(exp.getPrioridad()) {
                 case 1 -> destino.getColaAlta().encolar(exp);
                 case 2 -> destino.getColaMedia().encolar(exp);
@@ -291,13 +288,7 @@ public class Programa {
     return eliminado;
     
 }
-    
-    
-    
-    
-    
-    
-    
+ 
 }
 
   

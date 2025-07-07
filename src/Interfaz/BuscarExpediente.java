@@ -170,7 +170,7 @@ public class BuscarExpediente extends javax.swing.JFrame {
           fila[1] = String.valueOf(exp.getInteresado().getNombres());
           fila[2] = String.valueOf(exp.getInteresado().getDni());
           fila[3] = String.valueOf(exp.getAsunto());
-          fila[4] = String.valueOf(exp.getDocumentoReferencia());
+          fila[4] = String.valueOf(exp.getDocumentoReferencia().getNombre());
           fila[5] = exp.getEstado();
           fila[6] = exp.getFechaIni().toString();
           modeloTabla.addRow(fila);
