@@ -191,44 +191,113 @@ public class Programa {
     return masAntiguo;
 }
 
-}
-
-    /*
-    public static String visualizarExpedientes() {
-        StringBuilder sb = new StringBuilder("EXPEDIENTES REGISTRADOS:\n");
-        NodoDoble<Expediente> actual = Programa.expedientes.getCabeza();
-        while (actual != null) {
-            Expediente exp = actual.getItem();
-            sb.append("ID: ").append(exp.getIdExpediente())
-              .append(" | Asunto: ").append(exp.getAsunto())
-              .append(" | Prioridad: ").append(exp.getPrioridad())
-              .append("\n");
-            actual = actual.getSgteNodo();
-        }
-        return sb.toString();
-    }
-    */
-    
-    /*
-    public static boolean cambiarExpediente(int idExpediente, Seguimiento cambio) {
-        if (cambio == null) {
-            return false;
-        }
-
-        Expediente exp = BuscarExp(idExpediente);
-
-        if (exp != null && exp.getFechaFin() == null) {
-
-            if (cambio.getDependenciaOrigen().equals(cambio.getDependenciaDestino())) {
-                return false;
+    public static Expediente BuscarExpediente(int id){
+        NodoDoble<Dependencia> nodo = listaDependencias.getCabeza();
+        
+        while(nodo != null){
+            Dependencia dependencia = nodo.getItem();
+            
+            Expediente encontrado  = BuscarCola(dependencia.getColaAlta(), id);
+            if(encontrado != null){
+                return encontrado;
+            }
+            encontrado  = BuscarCola(dependencia.getColaMedia(), id);
+            if(encontrado != null){
+                return encontrado;
+            }
+            encontrado  = BuscarCola(dependencia.getColaBaja(), id);
+            if(encontrado != null){
+                return encontrado;
             }
 
-
-            exp.agregarSeguimiento(cambio); 
-            return true;
+            nodo = nodo.getSgteNodo();
         }
-        return false;
+        
+        return null;
     }
-    */
     
+    
+    public static Expediente BuscarCola(Cola<Expediente> cola, int id ){
+        Cola<Expediente> temp = new Cola<>();
+        Expediente encontrado = null;
+        
+        while(!cola.esVacia()){
+            Expediente expediente = cola.desencolar();
+            if(expediente.getIdExpediente() == id){
+                encontrado = expediente;
+            }
+            temp.encolar(expediente);
+                }
+        while(!temp.esVacia()){
+            cola.encolar(temp.desencolar());
+        }
+        
+        return encontrado;
+    }
+            
+    
+    public static Expediente finalizar(int id, String prioridad){
+        NodoDoble<Dependencia> nodo = listaDependencias.getCabeza();
+        
+        while(nodo != null){
+            Dependencia dependencia = nodo.getItem();
+            Cola<Expediente> cola = null;
+            
+            switch(prioridad){
+                case "1-Alta":
+                    cola = dependencia.getColaAlta();
+                    break;
+                    
+                case "2-Media":
+                    cola = dependencia.getColaMedia();
+                    break;
+                  
+                case "3-Baja":
+                    cola = dependencia.getColaBaja();
+                    break;       
+            }
+            if(cola != null){
+                Expediente eliminado = eliminar(cola, id);
+                if(eliminado !=  null){
+                    return eliminado;
+                }
+            }
+            
+            nodo = nodo.getSgteNodo();
+        }
+        
+        return null;
+    }
+    
+    
+    public static Expediente eliminar(Cola<Expediente> cola, int id){
+        Cola<Expediente> tmp = new Cola<>();
+        Expediente eliminado = null;
+        
+        while(!cola.esVacia()){
+            Expediente exp = cola.desencolar();
+            if(eliminado == null && exp.getIdExpediente() == id){
+                exp.setFechaFin(Fecha.Exacta());
+                exp.setEstado("Finalizado");
+                pilaExpedientesFinalizados.apilar(exp);
+                eliminado = exp;
+            }else{
+                tmp.encolar(exp);
+            }
+    } 
+    while(!tmp.esVacia()){
+        cola.encolar(tmp.desencolar());
+    }
+    return eliminado;
+    
+}
+    
+    
+    
+    
+    
+    
+    
+}
 
+  

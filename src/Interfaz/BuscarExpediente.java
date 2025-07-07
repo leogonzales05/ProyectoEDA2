@@ -31,7 +31,6 @@ public class BuscarExpediente extends javax.swing.JFrame {
         modeloTabla.addColumn("DocsRef");
         modeloTabla.addColumn("Estado");
         modeloTabla.addColumn("Fecha Inicio");
-        modeloTabla.addColumn("Fecha Fin");
         this.tbExpediente_Encontrado.setModel(modeloTabla);
     }
 
@@ -160,30 +159,26 @@ public class BuscarExpediente extends javax.swing.JFrame {
     }//GEN-LAST:event_txtIDActionPerformed
 
     private void btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActionPerformed
-    /*
-      int id =   Integer.parseInt(this.txtID.getText());
+    
+   int id = Integer.parseInt(this.txtID.getText());
       modeloTabla.setRowCount(0);
       
-      Expediente exp = Programa.BuscarExp(id);
+      Expediente exp = Programa.BuscarExpediente(id);
       if (exp != null){
-          String[] fila = new String[8];
+          String[] fila = new String[7];
           fila[0] = String.valueOf(exp.getPrioridad());
           fila[1] = String.valueOf(exp.getInteresado().getNombres());
           fila[2] = String.valueOf(exp.getInteresado().getDni());
           fila[3] = String.valueOf(exp.getAsunto());
-          fila[4] = exp.getDocumentoRef();
+          fila[4] = String.valueOf(exp.getDocumentoReferencia());
           fila[5] = exp.getEstado();
           fila[6] = exp.getFechaIni().toString();
-          if(exp.getEstado().equals("Finalizado")){
-              fila[7] = exp.getFechaFin().toString();
+          modeloTabla.addRow(fila);
           }
-          
-      
-      modeloTabla.addRow(fila);
-      }else{
+      else{
           JOptionPane.showMessageDialog(this, "No se encontró el expediente con ID :");
       }
-        */
+      
     }//GEN-LAST:event_btnActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed

@@ -64,6 +64,10 @@ public class Expediente {
         return fechaFin;
     }
 
+    public void setFechaFin(Fecha fechaFin) {
+        this.fechaFin = fechaFin;
+    }
+
     public ListaSimpleEnlazada<Seguimiento> getListaSeguimiento() {
         return listaSeguimiento;
     }
@@ -74,6 +78,10 @@ public class Expediente {
 
     public String getEstado() {
         return estado;
+    }
+
+    public void setEstado(String estado) {
+        this.estado = estado;
     }
 
     public void setDocumentoReferencia(Documento documentoReferencia) {

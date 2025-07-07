@@ -4,17 +4,32 @@
  */
 package Interfaz;
 
-/**
- *
- * @author Leonardo
- */
+import Entidades.Expediente;
+import javax.swing.table.DefaultTableModel;
+import Entidades.Programa;
+import javax.swing.JOptionPane;
+
+
 public class FinalizarTramite extends javax.swing.JFrame {
 
-    /**
-     * Creates new form FinalizarTramite
-     */
+    private DefaultTableModel modeloTabla;
+    private Programa finalizar; 
+    
+    
     public FinalizarTramite() {
         initComponents();
+        finalizar = new Programa();
+        
+        modeloTabla = new DefaultTableModel();
+        modeloTabla.addColumn("Prioridad");
+        modeloTabla.addColumn("Interesado");
+        modeloTabla.addColumn("DNI");
+        modeloTabla.addColumn("Asunto");
+        modeloTabla.addColumn("DocsRef");
+        modeloTabla.addColumn("Estado");
+        modeloTabla.addColumn("Fecha Inicio");
+        modeloTabla.addColumn("Fecha Fin");
+        this.tbFinalizados.setModel(modeloTabla);
     }
 
     /**
@@ -31,12 +46,12 @@ public class FinalizarTramite extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tbFinalizados = new javax.swing.JTable();
         jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jTextField1 = new javax.swing.JTextField();
+        btFinalizar = new javax.swing.JButton();
+        txtID = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
-        jComboBox1 = new javax.swing.JComboBox<>();
+        CBoxPrioridad = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -51,7 +66,7 @@ public class FinalizarTramite extends javax.swing.JFrame {
         jLabel3.setFont(new java.awt.Font("Microsoft PhagsPa", 1, 12)); // NOI18N
         jLabel3.setText("EXPEDIENTES FINALIZADOS");
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tbFinalizados.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -62,7 +77,7 @@ public class FinalizarTramite extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(tbFinalizados);
 
         jButton1.setFont(new java.awt.Font("Microsoft PhagsPa", 0, 12)); // NOI18N
         jButton1.setText("Volver");
@@ -72,26 +87,26 @@ public class FinalizarTramite extends javax.swing.JFrame {
             }
         });
 
-        jButton2.setFont(new java.awt.Font("Microsoft PhagsPa", 0, 12)); // NOI18N
-        jButton2.setText("Finalizar Expediente");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        btFinalizar.setFont(new java.awt.Font("Microsoft PhagsPa", 0, 12)); // NOI18N
+        btFinalizar.setText("Finalizar Expediente");
+        btFinalizar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                btFinalizarActionPerformed(evt);
             }
         });
 
-        jTextField1.setFont(new java.awt.Font("Microsoft PhagsPa", 0, 12)); // NOI18N
-        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+        txtID.setFont(new java.awt.Font("Microsoft PhagsPa", 0, 12)); // NOI18N
+        txtID.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField1ActionPerformed(evt);
+                txtIDActionPerformed(evt);
             }
         });
 
         jLabel4.setFont(new java.awt.Font("Microsoft PhagsPa", 0, 12)); // NOI18N
         jLabel4.setText("PRIORIDAD");
 
-        jComboBox1.setFont(new java.awt.Font("Microsoft PhagsPa", 0, 12)); // NOI18N
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1-Alta", "2-Media", "3-Baja" }));
+        CBoxPrioridad.setFont(new java.awt.Font("Microsoft PhagsPa", 0, 12)); // NOI18N
+        CBoxPrioridad.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1-Alta", "2-Media", "3-Baja" }));
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -108,18 +123,18 @@ public class FinalizarTramite extends javax.swing.JFrame {
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addComponent(txtID, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(CBoxPrioridad, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(150, 150, 150)
-                                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(btFinalizar, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 600, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(0, 50, Short.MAX_VALUE)))
                 .addContainerGap())
@@ -132,9 +147,9 @@ public class FinalizarTramite extends javax.swing.JFrame {
                 .addGap(23, 23, 23)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel4)
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(CBoxPrioridad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(23, 23, 23)
                 .addComponent(jLabel3)
                 .addGap(23, 23, 23)
@@ -142,7 +157,7 @@ public class FinalizarTramite extends javax.swing.JFrame {
                 .addGap(23, 23, 23)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btFinalizar, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(23, Short.MAX_VALUE))
         );
 
@@ -161,16 +176,38 @@ public class FinalizarTramite extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
+         ScreenManager.goBack(this);
     }//GEN-LAST:event_jButton1ActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton2ActionPerformed
+    private void btFinalizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btFinalizarActionPerformed
 
-    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+         int id = Integer.parseInt(this.txtID.getText());
+      String prioridad = this.CBoxPrioridad.getSelectedItem().toString();
+      modeloTabla.setRowCount(0);
+      
+      Expediente exp = Programa.finalizar(id, prioridad);
+      if (exp != null){
+          String[] fila = new String[8];
+          fila[0] = String.valueOf(exp.getPrioridad());
+          fila[1] = String.valueOf(exp.getInteresado().getNombres());
+          fila[2] = String.valueOf(exp.getInteresado().getDni());
+          fila[3] = String.valueOf(exp.getAsunto());
+          fila[4] = String.valueOf(exp.getDocumentoReferencia());
+          fila[5] = exp.getEstado();
+          fila[6] = exp.getFechaIni().toString();
+          fila[7] = exp.getFechaFin().toString();
+          modeloTabla.addRow(fila);
+          }
+      else{
+          JOptionPane.showMessageDialog(this, "No se encontró el expediente con ID :");
+      }
+        
+
+    }//GEN-LAST:event_btFinalizarActionPerformed
+
+    private void txtIDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtIDActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField1ActionPerformed
+    }//GEN-LAST:event_txtIDActionPerformed
 
     /**
      * @param args the command line arguments
@@ -208,16 +245,16 @@ public class FinalizarTramite extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JComboBox<String> CBoxPrioridad;
+    private javax.swing.JButton btFinalizar;
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
-    private javax.swing.JTextField jTextField1;
+    private javax.swing.JTable tbFinalizados;
+    private javax.swing.JTextField txtID;
     // End of variables declaration//GEN-END:variables
 }
