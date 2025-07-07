@@ -21,20 +21,21 @@ public class Temporizador {
             public void run() {
                 mostrarAlerta();
             }
-        }, 0, 60 * 1000);  // Cada 60 segundos
+        }, 0, 60 * 1000);  
     }
 
     public static void detener() {
         timer.cancel();
-        timer = new Timer();  // Para poder reiniciarlo si es necesario
+        timer = new Timer();  
     }
 
     private static void mostrarAlerta() {
         Expediente exp = Programa.obtenerExpedienteMasAntiguo();
         if (exp != null) {
             JOptionPane.showMessageDialog(null,
-                "Expediente más urgente:\n" +
-                "Código: " + exp.getIdExpediente() + "\n" +
+                """
+                Expediente m\u00e1s urgente:
+                C\u00f3digo: """ + exp.getIdExpediente() + "\n" +
                 "Fecha: " + exp.getFechaIni().toString() + "\n" +
                 "Asunto: " + exp.getAsunto());
         } else {
