@@ -48,6 +48,15 @@ public class Fecha {
         
         return new Fecha(d,m,y,h,min,seg);
     }
+    
+    public int comparar(Fecha otra) {
+        if (this.anio != otra.anio) return this.anio - otra.anio;
+        if (this.mes != otra.mes) return this.mes - otra.mes;
+        if (this.dia != otra.dia) return this.dia - otra.dia;
+        if (this.hora != otra.hora) return this.hora - otra.hora;
+        if (this.minuto != otra.minuto) return this.minuto - otra.minuto;
+        return this.segundo - otra.segundo;
+    }
 
     public int getDia() {
         return dia;

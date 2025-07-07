@@ -168,11 +168,11 @@ public class Menu extends javax.swing.JFrame {
         ScreenManager.openNewScreen(this, buscarExpediente);
     }//GEN-LAST:event_BT_buscarExpedienteActionPerformed
 
-    
     private void BT_visualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BT_visualizarActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_BT_visualizarActionPerformed
 
+    
     /**
      * @param args the command line arguments
      */

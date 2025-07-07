@@ -409,7 +409,7 @@
                     <Column editable="true" title="Asunto" type="java.lang.Object"/>
                     <Column editable="true" title="DocumentoRef" type="java.lang.Object"/>
                     <Column editable="true" title="Seguimiento" type="java.lang.Object"/>
-                    <Column editable="true" title="Tramites" type="java.lang.Object"/>
+                    <Column editable="true" title="DocTramites" type="java.lang.Object"/>
                     <Column editable="true" title="Estado" type="java.lang.Object"/>
                     <Column editable="true" title="Fecha Inicio" type="java.lang.Object"/>
                     <Column editable="true" title="Fecha Fin" type="java.lang.Object"/>
@@ -587,7 +587,7 @@
                     <Column editable="true" title="Asunto" type="java.lang.Object"/>
                     <Column editable="true" title="Documento" type="java.lang.Object"/>
                     <Column editable="true" title="Seguimiento" type="java.lang.Object"/>
-                    <Column editable="true" title="Tr&#xe1;mite" type="java.lang.Object"/>
+                    <Column editable="true" title="DocTr&#xe1;mites" type="java.lang.Object"/>
                     <Column editable="true" title="Estado" type="java.lang.Object"/>
                     <Column editable="true" title="Fecha Inicio" type="java.lang.Object"/>
                     <Column editable="true" title="Fecha Fin" type="java.lang.Object"/>
@@ -671,7 +671,7 @@
                     <Column editable="true" title="Asunto" type="java.lang.Object"/>
                     <Column editable="true" title="Documento" type="java.lang.Object"/>
                     <Column editable="true" title="Seguimiento" type="java.lang.Object"/>
-                    <Column editable="true" title="Tr&#xe1;mites" type="java.lang.Object"/>
+                    <Column editable="true" title="DocTr&#xe1;mites" type="java.lang.Object"/>
                     <Column editable="true" title="Estado" type="java.lang.Object"/>
                     <Column editable="true" title="Fecha Inicio" type="java.lang.Object"/>
                     <Column editable="true" title="Fecha Fin" type="java.lang.Object"/>

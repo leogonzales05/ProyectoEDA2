@@ -5,9 +5,7 @@
 package Interfaz;
 
 import Entidades.Dependencia;
-import Entidades.Documento;
 import Entidades.Expediente;
-import Entidades.Interesado;
 import Entidades.Programa;
 import TDA.Cola;
 import TDA.ListaDobleEnlazada;
@@ -27,7 +25,7 @@ public RegistrarMov() {
         initComponents();
         configurarTabla();
         
-        cargarDependenciasEnComboBox(); // Llama este método al iniciar
+        cargarDependenciasEnComboBox();
         cargarPrioridadesEnComboBox();
         jComboBox1.addActionListener(e -> filtrarExpedientes());
         jComboBox2.addActionListener(e -> filtrarExpedientes());
@@ -37,7 +35,7 @@ public RegistrarMov() {
 
 
 private void cargarPrioridadesEnComboBox() {
-        jComboBox2.removeAllItems(); // Limpiar primero
+    jComboBox2.removeAllItems(); // Limpiar primero
         
         // Agregar las opciones de prioridad
         jComboBox2.addItem("Alta (1)");
@@ -46,112 +44,72 @@ private void cargarPrioridadesEnComboBox() {
         
         // Opcional: seleccionar una por defecto
         jComboBox2.setSelectedIndex(0); // Selecciona "Alta (1)"
-    }
+}
 
 
 private void cargarDependenciasEnComboBox() {
-        // Limpiar ComboBox primero
-        jComboBox1.removeAllItems(); // Origen
-        jComboBox3.removeAllItems(); // NUEVOOOOOOO!(BORRAR)
+        jComboBox1.removeAllItems();    
+        jComboBox3.removeAllItems(); 
         ListaDobleEnlazada<Dependencia> dependencias = Programa.getListaDependencias();
         
-        // Verificar si hay dependencias
         if (dependencias != null && !dependencias.esVacia()) {
             NodoDoble<Dependencia> nodoActual = dependencias.getCabeza();
             
-            // Recorrer y agregar cada dependencia a los ComboBox
             while (nodoActual != null) {
                 String nombreDependencia = nodoActual.getItem().getNombre();
                 jComboBox1.addItem(nombreDependencia);
-                jComboBox3.addItem(nombreDependencia); //NUEVOOOOO!!!(BORRAR)
+                jComboBox3.addItem(nombreDependencia);
                 nodoActual = nodoActual.getSgteNodo();
             }
-        }
-        /*jComboBox1.addActionListener(e -> actualizarDependenciasDestino());//NUEVOOOO!!!!(BORRAR)*/
-        
-        
+        } 
     }
 
-
-
-//NUEVOOOOO!(BORRAR)
 private void actualizarDependenciasDestino() {
-        String dependenciaOrigen = (String) jComboBox1.getSelectedItem();
-        jComboBox3.removeAllItems();
-        
-        ListaDobleEnlazada<Dependencia> dependencias = Programa.getListaDependencias();
-        if (dependencias != null && !dependencias.esVacia()) {
-            NodoDoble<Dependencia> nodoActual = dependencias.getCabeza();
-            while (nodoActual != null) {
-                String nombreDependencia = nodoActual.getItem().getNombre();
-                // Agregar todas excepto la seleccionada en el primer ComboBox
-                if (!nombreDependencia.equals(dependenciaOrigen)) {
-                    jComboBox3.addItem(nombreDependencia);
-                }
-                nodoActual = nodoActual.getSgteNodo();
+    String dependenciaOrigen = (String) jComboBox1.getSelectedItem();
+    jComboBox3.removeAllItems();
+    ListaDobleEnlazada<Dependencia> dependencias = Programa.getListaDependencias();
+    if (dependencias != null && !dependencias.esVacia()) {
+        NodoDoble<Dependencia> nodoActual = dependencias.getCabeza();
+        while (nodoActual != null) {
+            String nombreDependencia = nodoActual.getItem().getNombre();
+            if (!nombreDependencia.equals(dependenciaOrigen)) {
+                jComboBox3.addItem(nombreDependencia);
             }
-        }
-        // Seleccionar el primer elemento si hay opciones disponibles
-        if (jComboBox3.getItemCount() > 0) {
-            jComboBox3.setSelectedIndex(0);
+                nodoActual = nodoActual.getSgteNodo();
         }
     }
-
-    // ... (resto del código existente)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+        // Seleccionar el primer elemento si hay opciones disponibles
+    if (jComboBox3.getItemCount() > 0) {
+        jComboBox3.setSelectedIndex(0);
+    }
+}
 
 public void actualizarComboBoxDependencias() {
     cargarDependenciasEnComboBox();
 }
     
-    
-    
-        
-    
-
-       
-             private void agregarExpedientesDeCola(Cola<Expediente> cola) {//nuevoo!! el segundo "nombreDependencia"
+private void agregarExpedientesDeCola(Cola<Expediente> cola) {
     if (cola == null) return;
     
     Cola<Expediente> temp = new Cola<>();
     while (!cola.esVacia()) {
         Expediente exp = cola.desencolar();
         temp.encolar(exp);
-        
-        
-        // Agregar a la tabla
+
         modeloTabla.addRow(new Object[]{
             exp.getIdExpediente(),
             "Prioridad " + exp.getPrioridad(),
             exp.getInteresado().getNombres(),
             exp.getAsunto(),
-            //NUEVO!!!
-            // ... otros campos que necesites
+            
         });
     }
-       
-// Restaurar la cola original
     while (!temp.esVacia()) {
         cola.encolar(temp.desencolar());
     }
 }
-    private void filtrarExpedientes() {
+
+private void filtrarExpedientes() {
     modeloTabla.setRowCount(0); // Limpiar tabla
     String dependenciaSeleccionada = (String) jComboBox1.getSelectedItem();
     String prioridadSeleccionada = (String) jComboBox2.getSelectedItem();
@@ -177,21 +135,12 @@ public void actualizarComboBoxDependencias() {
         }
     }
 }
-            
-            
-            
-            
-            
-            
-            
-            
-            
-    
-    private void configurarTabla() {
+
+private void configurarTabla() {
     modeloTabla = new DefaultTableModel(
         new Object[][]{},
-        new String[]{"ID", "Prioridad", "Interesado", "Asunto", "Estado"} // Columnas
-    ) {
+        new String[]{"ID", "Prioridad", "Interesado", "Asunto", "Estado"}
+    ){
         @Override
         public boolean isCellEditable(int row, int column) {
             return false;
@@ -202,12 +151,9 @@ public void actualizarComboBoxDependencias() {
     public void actualizarTabla() {
     filtrarExpedientes();
     
-
-// Vuelve a aplicar los filtros actuales
 }
     
-    
-    private boolean esIdValido(String id) {
+private boolean esIdValido(String id) {
     // Verifica primero en la tabla visible (datos ya filtrados)
     for (int i = 0; i < jTable1.getRowCount(); i++) {
         String idEnTabla = jTable1.getValueAt(i, 0).toString(); // Columna 0 = ID
@@ -217,9 +163,6 @@ public void actualizarComboBoxDependencias() {
     }
     return false;
 }
-    
-    
-    // ... (el resto del código generado por NetBeans permanece igual)
 
     /**
      * Creates new form RegistrarMov
@@ -254,12 +197,15 @@ public void actualizarComboBoxDependencias() {
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setPreferredSize(new java.awt.Dimension(800, 600));
+        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setFont(new java.awt.Font("Microsoft PhagsPa", 0, 12)); // NOI18N
         jLabel1.setText("DEPENDENCIA ORIGEN:");
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 63, 160, -1));
 
         jLabel2.setFont(new java.awt.Font("Microsoft PhagsPa", 0, 12)); // NOI18N
         jLabel2.setText("DEPENDENCIA DESTINO:");
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 410, -1, -1));
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -274,6 +220,8 @@ public void actualizarComboBoxDependencias() {
         ));
         jScrollPane1.setViewportView(jTable1);
 
+        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 102, 612, 282));
+
         jButton1.setFont(new java.awt.Font("Microsoft PhagsPa", 0, 12)); // NOI18N
         jButton1.setText("Volver");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -281,6 +229,7 @@ public void actualizarComboBoxDependencias() {
                 jButton1ActionPerformed(evt);
             }
         });
+        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(62, 451, 225, 22));
 
         jButton2.setFont(new java.awt.Font("Microsoft PhagsPa", 0, 12)); // NOI18N
         jButton2.setText("Mover Expediente");
@@ -289,95 +238,44 @@ public void actualizarComboBoxDependencias() {
                 jButton2ActionPerformed(evt);
             }
         });
+        jPanel1.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(437, 450, 225, -1));
 
         jComboBox1.setFont(new java.awt.Font("Microsoft PhagsPa", 0, 12)); // NOI18N
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jPanel1.add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(215, 59, 130, 25));
 
         jLabel3.setFont(new java.awt.Font("Microsoft PhagsPa", 1, 12)); // NOI18N
         jLabel3.setText("MOVER EXPEDIENTE");
+        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 29, 160, -1));
 
         jLabel4.setText("PRIORIDAD:");
+        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(374, 63, 120, -1));
 
         jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBox2.setPreferredSize(new java.awt.Dimension(62, 25));
         jComboBox2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jComboBox2ActionPerformed(evt);
             }
         });
+        jPanel1.add(jComboBox2, new org.netbeans.lib.awtextra.AbsoluteConstraints(512, 60, 150, -1));
 
         jComboBox3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jPanel1.add(jComboBox3, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 400, 110, 25));
 
         jLabel5.setText("ID DE EXPEDIENTE:");
-
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(50, 50, 50)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(29, 29, 29)
-                        .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jComboBox2, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jScrollPane1)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(12, 12, 12)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jTextField2)))
-                        .addGap(150, 150, 150)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabel2)
-                                .addGap(18, 18, 18)
-                                .addComponent(jComboBox3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                .addContainerGap(38, Short.MAX_VALUE))
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(29, 29, 29)
-                .addComponent(jLabel3)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel4)
-                    .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 282, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(jLabel5)
-                    .addComponent(jComboBox3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(26, 26, 26)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton2))
-                .addContainerGap(28, Short.MAX_VALUE))
-        );
+        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(62, 405, 121, -1));
+        jPanel1.add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(188, 402, 99, 25));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 700, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 700, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 500, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 500, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         pack();
@@ -389,33 +287,25 @@ public void actualizarComboBoxDependencias() {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        // TODO add your handling code here:
-        
-        
-        
-        
-  jButton2.addActionListener(e -> {
+        // TODO add your handling code here:    
+    jButton2.addActionListener(e -> {
     String idIngresado = jTextField2.getText().trim();
     
     if (idIngresado.isEmpty()) {
         JOptionPane.showMessageDialog(this, "Ingrese un ID", "Error", JOptionPane.ERROR_MESSAGE);
         return;
     }
-    
     if (esIdValido(idIngresado)) {
-        // El ID es válido (existe en la tabla filtrada)
         jTextField2.setBackground(Color.WHITE);
-        // Aquí irá luego tu lógica para mover el expediente...
         JOptionPane.showMessageDialog(this, "ID válido: " + idIngresado);
     } else {
-        // El ID no existe en los resultados actuales
-        jTextField2.setBackground(new Color(255, 200, 200)); // Fondo rojo claro
+        jTextField2.setBackground(new Color(255, 200, 200));
         JOptionPane.showMessageDialog(this, 
             "ID no encontrado en los resultados filtrados", 
             "Error", 
             JOptionPane.ERROR_MESSAGE);
     }
-});
+        });
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jComboBox2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox2ActionPerformed

@@ -17,24 +17,24 @@ public class Dependencia {
 
     public Dependencia(String nombre) {
         this.nombre = nombre;
-        this.colaAlta = new Cola();
-        this.colaMedia = new Cola();
-        this.colaBaja = new Cola();        
+        this.colaAlta = new Cola<>();
+        this.colaMedia = new Cola<>();
+        this.colaBaja = new Cola<>();        
     }
 
     public String getNombre() {
         return nombre;
     }
 
-    public Cola getColaAlta() {
+    public Cola<Expediente> getColaAlta() {
         return colaAlta;
     }
 
-    public Cola getColaMedia() {
+    public Cola<Expediente> getColaMedia() {
         return colaMedia;
     }
 
-    public Cola getColaBaja() {
+    public Cola<Expediente> getColaBaja() {
         return colaBaja;
     }
     

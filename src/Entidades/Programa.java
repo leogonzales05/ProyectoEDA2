@@ -35,7 +35,6 @@ public class Programa {
         actualizarTabla(modeloMedia, aux.getColaMedia());
         actualizarTabla(modeloBaja, aux.getColaBaja());
     }
-
     
     public static void actualizarTabla(DefaultTableModel modelo, Cola<Expediente> cola){
         Cola<Expediente> tmp = new Cola<>();
@@ -52,8 +51,8 @@ public class Programa {
                 interesado.getNombres(),
                 expediente.getAsunto(),
                 (documentoref == null ? "Ninguno" : documentoref.getNombre()),
-                expediente.getListaSeguimiento(),
-                (expediente.getDocumentosTramites() == null ? "-" : expediente.getDocumentosTramites().toString()),
+                (expediente.getListaSeguimiento().esVacia() ? "-" : expediente.getListaSeguimiento().toString()),
+                (expediente.getDocumentosTramites().esVacia() ? "-" : expediente.getDocumentosTramites().toString()),
                 expediente.getEstado(),
                 expediente.getFechaIni().toString(),
                 (expediente.getFechaFin() == null ? "-" :expediente.getFechaFin().toString())
@@ -75,21 +74,6 @@ public class Programa {
         return listaDependencias;
     }
     
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
     public static boolean moverExpediente(String idExpediente, String nombreDependenciaDestino) {
         // 1. Buscar expediente y su dependencia origen
         Object[] busqueda = buscarExpediente(idExpediente);
@@ -107,7 +91,6 @@ public class Programa {
         return moverEntreColas(origen, destino, expediente, tipoCola);
     }
     
-    // Métodos auxiliares
     private static Object[] buscarExpediente(String id) {
         NodoDoble<Dependencia> nodo = listaDependencias.getCabeza();
         while (nodo != null) {
@@ -148,8 +131,7 @@ public class Programa {
         return encontrado;
     }
     
-    private static boolean moverEntreColas(Dependencia origen, Dependencia destino, 
-                                         Expediente exp, String tipoCola) {
+    private static boolean moverEntreColas(Dependencia origen, Dependencia destino, Expediente exp, String tipoCola) {
         try {
             // Eliminar de origen
             Cola<Expediente> colaOrigen = switch(tipoCola) {
@@ -173,19 +155,6 @@ public class Programa {
         }
     }
     
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
     public static Dependencia buscarDependencia(String nombre) {
         NodoDoble<Dependencia> actual = listaDependencias.getCabeza();
         while (actual != null) {
@@ -196,32 +165,34 @@ public class Programa {
         }
         return null;
     }
+    
+    public static Expediente obtenerExpedienteMasAntiguo() {
+    ListaDobleEnlazada<Expediente> listaCabezaColasAltas = new ListaDobleEnlazada<>();
 
-    
-    
-    
-    
-    
-    
-    
+    NodoDoble<Dependencia> actual = listaDependencias.getCabeza();
+    while (actual != null) {
+        Dependencia dependencia = actual.getItem();
+        if (!dependencia.getColaAlta().esVacia()) {  
+            listaCabezaColasAltas.agregarFinal(dependencia.getColaAlta().getFrente().getItem());
         }
+        actual = actual.getSgteNodo();
+    }
 
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
+    Expediente masAntiguo = null;
+    NodoDoble<Expediente> nodoExp = listaCabezaColasAltas.getCabeza();
+    while (nodoExp != null) {
+        Expediente exp = nodoExp.getItem();
+        if (masAntiguo == null || exp.getFechaIni().comparar(masAntiguo.getFechaIni()) < 0) {
+            masAntiguo = exp;
+        }
+        nodoExp = nodoExp.getSgteNodo();
+    }
+
+    return masAntiguo;
+}
+
+}
+
     /*
     public static String visualizarExpedientes() {
         StringBuilder sb = new StringBuilder("EXPEDIENTES REGISTRADOS:\n");

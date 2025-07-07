@@ -4,7 +4,6 @@
  */
 package Interfaz;
 
-import Entidades.Dependencia;
 import Entidades.Documento;
 import Entidades.Interesado;
 import Entidades.Programa;
@@ -138,7 +137,7 @@ public class RegistrarExp extends javax.swing.JFrame {
 
             },
             new String [] {
-                "ID", "Prioridad", "Interesado", "Asunto", "DocumentoRef", "Seguimiento", "Tramites", "Estado", "Fecha Inicio", "Fecha Fin"
+                "ID", "Prioridad", "Interesado", "Asunto", "DocumentoRef", "Seguimiento", "DocTramites", "Estado", "Fecha Inicio", "Fecha Fin"
             }
         ));
         jScrollPane1.setViewportView(colaAlta);
@@ -195,7 +194,7 @@ public class RegistrarExp extends javax.swing.JFrame {
 
             },
             new String [] {
-                "ID", "Prioridad", "Interesado", "Asunto", "Documento", "Seguimiento", "Trámite", "Estado", "Fecha Inicio", "Fecha Fin"
+                "ID", "Prioridad", "Interesado", "Asunto", "Documento", "Seguimiento", "DocTrámites", "Estado", "Fecha Inicio", "Fecha Fin"
             }
         ));
         jScrollPane3.setViewportView(colaMedia);
@@ -205,7 +204,7 @@ public class RegistrarExp extends javax.swing.JFrame {
 
             },
             new String [] {
-                "ID", "Prioridad", "Interesado", "Asunto", "Documento", "Seguimiento", "Trámites", "Estado", "Fecha Inicio", "Fecha Fin"
+                "ID", "Prioridad", "Interesado", "Asunto", "Documento", "Seguimiento", "DocTrámites", "Estado", "Fecha Inicio", "Fecha Fin"
             }
         ));
         jScrollPane4.setViewportView(colaBaja);
@@ -475,7 +474,19 @@ public class RegistrarExp extends javax.swing.JFrame {
         DefaultTableModel modeloBaja = (DefaultTableModel) colaBaja.getModel();
 
         Programa.actualizaTablaMesaDePartes(modeloAlta, modeloMedia, modeloBaja);
-
+        
+        dni.setText("");
+        telefono.setText("");
+        email.setText("");
+        nombres.setText("");
+        apellidos.setText("");
+        asunto.setText("");
+        nombreDoc.setText("");
+        formatoDoc.setText("");
+        descripcion.setText("");
+        tipo.setSelectedIndex(0);
+        prioridad.setSelectedIndex(0);
+        
     }//GEN-LAST:event_RegistrarExpedienteActionPerformed
 
     private void telefonoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_telefonoActionPerformed

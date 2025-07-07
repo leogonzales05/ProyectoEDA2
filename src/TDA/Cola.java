@@ -46,23 +46,15 @@ public class Cola<T> {
             return itemAux;
         }
     }
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
+
+    public Nodo<T> getFrente() {
+        return frente;
+    }
+
+    public Nodo<T> getUltimo() {
+        return ultimo;
+    }
+
     public void eliminarExpediente(String id) {
         Cola<T> temp = new Cola<>();
         boolean encontrado = false;

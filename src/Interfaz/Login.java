@@ -136,6 +136,7 @@ public class Login extends javax.swing.JFrame {
             if (userData.username.equals(username.getText()) && userData.contraseña.equals(contraseña.getText())) {
                 System.out.println("El usuario existe");
                 encontrado = true;
+                Temporizador.iniciar();
                 Menu menu=new Menu();
                 ScreenManager.openNewScreen(this, menu);
                 Programa.registrarDependencia("Mesa de Partes");
